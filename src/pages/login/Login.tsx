@@ -1,7 +1,37 @@
 import { KeyIcon, UserIcon } from "@phosphor-icons/react"
+import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import type UsuarioLogin from "../../models/usuarioLogin";
+import { ClipLoader } from "react-spinners";
 
 
 export default function Login() {
+
+    const navigate = useNavigate();
+
+    const { usuario, handleLogin, isLoading } = useContext(AuthContext)
+
+    const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>({} as UsuarioLogin
+    )
+
+    useEffect(() => {
+        if (usuario.token !== "") {
+            navigate('/home')
+        }
+    }, [usuario])
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuarioLogin({
+            ...usuarioLogin,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function login(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        handleLogin(usuarioLogin)
+    }
 
   return (
     <div
@@ -18,13 +48,17 @@ export default function Login() {
         <p className="text-white/80 mb-6">
           Insira as suas credenciais 
         </p>
-
+        <form onSubmit={login}>
         <div className="relative mb-4 ">
            <UserIcon size={28} color="#2d9a62" className="absolute top-3 left-2 "/>
           <input
             type="text"
+            id="usuario"
+            name="usuario"
             placeholder="Email"
             className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+            value = {usuarioLogin.email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
         </div>
 
@@ -33,22 +67,32 @@ export default function Login() {
             <KeyIcon size={28} color="#2d9a62" className="absolute top-3 left-2" />
           <input
             type="password"
+            id="senha"
+            name="senha"
             placeholder="Senha"
             className="w-full pl-12 pr-12 py-3 rounded-xl bg-transparent border border-white/40 focus:border-none focus:outline-none focus:ring-2 focus:ring-green-400 placeholder-white/80"
+            value = {usuarioLogin.senha}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
         </div>
 
         <button className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
-          Login
+          { isLoading ? 
+                            <ClipLoader 
+                                color="#ffffff" 
+                                size={24}
+                            /> : 
+                            <span>Entrar</span>
+                        }
         </button>
 
         <p className="text-center text-sm text-white/80 mt-6">
           Nâo tem uma conta?{" "}
-          <span className="font-semibold text-lime-400 cursor-pointer hover:underline">
-            Cadastrar
-          </span>
+            <Link to="/cadastro" className="ont-semibold text-lime-400 cursor-pointer hover:underline">
+                            Cadastre-se
+            </Link>
         </p>
-        
+        </form>
       </div>
     </div>
   )
