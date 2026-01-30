@@ -1,4 +1,4 @@
-import type Categoria from "../../../models/categoria"
+import { Link } from "react-router-dom"
 import type Seguro from "../../../models/seguro"
 
 interface CardSegurosProps {
@@ -35,11 +35,11 @@ function CardSeguro({ seguro }: CardSegurosProps) {
 
             {/* 4. Botões lado a lado com margem e cantos arredondados */}
             <div className="flex gap-3">
-                <Link to={`/editarproduto/${seguro.id}`} className='w-full text-white bg-indigo-600 
+                <Link to={`/editarseguro/${seguro.id}`} className='w-full text-white bg-indigo-600 
                     hover:bg-blue-700 flex items-center justify-center py-3 rounded-full font-bold transition-all'>
                     <button>Editar</button>
                 </Link>
-                <Link to={`/deletarproduto/${seguro.id}`} className='text-white bg-red-700 
+                <Link to={`/deletarseguro/${seguro.id}`} className='text-white bg-red-700 
                     hover:bg-red-900 w-full flex items-center justify-center py-3 rounded-full font-bold transition-all'>
                     <button>Deletar</button>
                 </Link>

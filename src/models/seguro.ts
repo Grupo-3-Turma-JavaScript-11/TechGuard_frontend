@@ -11,7 +11,7 @@ export default interface Seguro {
   cobertura: string
   valorSeguro: number
   anoDispositivo:number 
-  dataContratacao: Date
+  dataContratacao: string
   categoria: Categoria
   usuario: Usuario[]
 }

@@ -1,9 +1,10 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { atualizar, buscar, cadastrar } from "../../../service/Service";
 import type Categoria from "../../../models/categoria";
 import type Seguro from "../../../models/seguro";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function FormSeguro() {
 
@@ -17,14 +18,16 @@ function FormSeguro() {
     
     const [seguro, setSeguro] = useState<Seguro>({ } as Seguro)
 
-    // const { usuario, handleLogout } = useContext(AuthContext)
-    // const token = usuario.token
+    const { usuario, handleLogout } = useContext(AuthContext)
+    const token = usuario.token
 
     const { id } = useParams<{ id: string }>()
 
     async function buscarSeguroPorId(id: string) {
         try {
-            await buscar(`/seguros/${id}`, setSeguro, )
+            await buscar(`/seguros/${id}`, setSeguro, {
+                headers: { Authorization: token }
+            })
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 // handleLogout()
@@ -34,30 +37,34 @@ function FormSeguro() {
 
     async function buscarCategoriaPorId(id: string) {
         try {
-            await buscar(`/categorias/${id}`, setCategoria, )
+            await buscar(`/categorias/${id}`, setCategoria, {
+                headers: { Authorization: token }
+            })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                // handleLogout()
+                handleLogout()
             }
         }
     }
 
     async function buscarCategorias() {
         try {
-            await buscar('/categorias', setCategorias,)
+            await buscar('/categorias', setCategorias, {
+                headers: { Authorization: token }
+            })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                // handleLogout()
+                handleLogout()
             }
         }
     }
 
-    // useEffect(() => {
-    //     if (token === '') {
-    //         alert('Você precisa estar logado');
-    //         navigate('/');
-    //     }
-    // }, [token])
+    useEffect(() => {
+        if (token === '') {
+            alert('Você precisa estar logado');
+            navigate('/');
+        }
+    }, [token])
 
     useEffect(() => {
         buscarCategorias()
@@ -92,7 +99,9 @@ function FormSeguro() {
 
         if (id !== undefined) {
             try {
-                await atualizar(`/seguros/${seguro.id}`, seguro, setSeguro);
+                await atualizar(`/seguros/${seguro.id}`, seguro, setSeguro, {
+                headers: { Authorization: token }
+            });
 
                 alert('Seguro atualizado com sucesso')
 
@@ -106,7 +115,9 @@ function FormSeguro() {
 
         } else {
             try {
-                await cadastrar(`/seguros`, seguro, setSeguro);
+                await cadastrar(`/seguros`, seguro, setSeguro, {
+                headers: { Authorization: token }
+            });
 
                 alert('Seguro cadastrado com sucesso');
 

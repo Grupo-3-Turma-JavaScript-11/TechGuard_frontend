@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 // import { AuthContext } from "../../../contexts/AuthContext"
 import { buscar, deletar } from "../../../service/Service"
 import { ClipLoader } from "react-spinners"
 import type Seguro from "../../../models/seguro"
+import { AuthContext } from "../../../contexts/AuthContext"
 
 function DeletarSeguro() {
 
@@ -14,12 +15,14 @@ function DeletarSeguro() {
 
     const { id } = useParams<{ id: string }>()
 
-    // const { usuario, handleLogout } = useContext(AuthContext)
-    // const token = usuario.token
+    const { usuario, handleLogout } = useContext(AuthContext)
+    const token = usuario.token
 
     async function buscarPorId(id: string) {
         try {
-            await buscar(`/seguros/${id}`, setSeguro,)
+            await buscar(`/seguros/${id}`, setSeguro,{
+                headers: { Authorization: token }
+            })
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 // handleLogout()
@@ -27,12 +30,12 @@ function DeletarSeguro() {
         }
     }
 
-    // useEffect(() => {
-    //     if (token === '') {
-    //         alert('Você precisa estar logado')
-    //         navigate('/')
-    //     }
-    // }, [token])
+    useEffect(() => {
+        if (token === '') {
+            alert('Você precisa estar logado')
+            navigate('/')
+        }
+    }, [token])
 
     useEffect(() => {
         if (id !== undefined) {
@@ -40,19 +43,21 @@ function DeletarSeguro() {
         }
     }, [id])
 
-    async function deletarProduto() {
+    async function deletarSeguro() {
         setIsLoading(true)
 
         try {
-            await deletar(`/seguros/${id}`, )
+            await deletar(`/seguros/${id}`, {
+                headers: { Authorization: token }
+            })
 
-            alert('Produto apagado com sucesso')
+            alert('Seguro apagado com sucesso')
 
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                // handleLogout()
+                handleLogout()
             }else {
-                alert('Erro ao deletar o produto.')
+                alert('Erro ao deletar o seguro.')
             }
         }
 
@@ -61,21 +66,21 @@ function DeletarSeguro() {
     }
 
     function retornar() {
-        navigate("/produtos")
+        navigate("/seguros")
     }
     
     return (
         <div className='container w-1/3 mx-auto'>
-            <h1 className='text-4xl text-center my-4'>Deletar Produto</h1>
+            <h1 className='text-4xl text-center my-4'>Deletar Seguro</h1>
 
             <p className='text-center font-semibold mb-4'>
-                Você tem certeza de que deseja apagar o produto a seguir?
+                Você tem certeza de que deseja apagar o seguro a seguir?
             </p>
 
             <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
                 <header 
                     className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>
-                    Postagem
+                    Seguro
                 </header>
                 <div className="p-4">
                     <p className='text-xl h-full'>{seguro.nomeSeguro}</p>
@@ -90,7 +95,7 @@ function DeletarSeguro() {
                     <button 
                         className='w-full text-slate-100 bg-indigo-400 
                         hover:bg-indigo-600 flex items-center justify-center'
-                        onClick={deletarProduto}>
+                        onClick={deletarSeguro}>
 
                         { isLoading ? 
                             <ClipLoader 

@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import CardSeguro from "../cardseguro/CardSeguro";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import type Seguro from "../../../models/seguro";
 import { buscar } from "../../../service/Service";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function ListaSeguros() {
 
@@ -57,7 +58,7 @@ function ListaSeguros() {
             )}
 
             <div className="w-full h-screen flex flex-col p-20 items-center ">
-            <button className="bg-gradient-to-r from-blue-800 to-blue-400 mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarproduto')}>Cadastrar novo Produto</button>
+            <button className="'bg-gradient-to-r' from-blue-800 to-blue-400 mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarproduto')}>Cadastrar novo Produto</button>
 
             <div className="flex justify-center w-full my-4">
                 <div className="container flex flex-col">
