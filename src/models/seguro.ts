@@ -10,8 +10,8 @@ export default interface Seguro {
   descricao: string
   cobertura: string
   valorSeguro: number
-  anoDespositivo:number 
-  dataContratação: Date
+  anoDispositivo:number 
+  dataContratacao: Date
   categoria: Categoria
   usuario: Usuario[]
 }
