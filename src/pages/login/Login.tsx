@@ -17,7 +17,7 @@ export default function Login() {
 
     useEffect(() => {
         if (usuario.token !== "") {
-            navigate('/')
+            navigate('/home')
         }
     }, [usuario])
 
@@ -53,8 +53,8 @@ export default function Login() {
            <UserIcon size={28} color="#2d9a62" className="absolute top-3 left-2 "/>
           <input
             type="text"
-            id="usuario"
-            name="usuario"
+            id="email"
+            name="email"
             placeholder="Email"
             className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
             value = {usuarioLogin.email}
