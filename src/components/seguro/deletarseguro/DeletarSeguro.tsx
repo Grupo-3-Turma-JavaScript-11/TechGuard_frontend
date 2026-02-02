@@ -5,6 +5,7 @@ import { buscar, deletar } from "../../../service/Service"
 import { ClipLoader } from "react-spinners"
 import type Seguro from "../../../models/seguro"
 import { AuthContext } from "../../../contexts/AuthContext"
+import { ToastAlert } from "../../../utils/ToastAlert"
 
 function DeletarSeguro() {
 
@@ -51,13 +52,13 @@ function DeletarSeguro() {
                 headers: { Authorization: token }
             })
 
-            alert('Seguro apagado com sucesso')
+            ToastAlert('Seguro deletada com sucesso', 'sucesso')
 
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
             }else {
-                alert('Erro ao deletar o seguro.')
+                ToastAlert('Erro ao deletar o seguro.', 'erro')
             }
         }
 
@@ -84,7 +85,7 @@ function DeletarSeguro() {
                 </header>
                 <div className="p-4">
                     <p className='text-xl h-full'>{seguro.nomeSeguro}</p>
-                    <p>{seguro.valor}</p>
+                    <p>{seguro.valorSeguro}</p>
                 </div>
                 <div className="flex">
                     <button 
