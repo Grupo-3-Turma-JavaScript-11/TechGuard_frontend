@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { AuthProvider } from './contexts/AuthContext'
@@ -9,6 +8,12 @@ import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
+import ListaCategorias from './components/categoria/listacategorias/ListaCategorias';
+import FormCategoria from './components/categoria/formcategoria/FormCategoria';
+import DeletarCategoria from './components/categoria/deletarcategoria/DeletarCategoria';
+import ListaSeguros from './components/seguro/listaseguros/ListaSeguros';
+import FormSeguro from './components/seguro/formseguro/FormSeguro';
+import DeletarSeguro from './components/seguro/deletarseguro/DeletarSeguro';
 
 function App() {
 
@@ -23,6 +28,14 @@ return(
 							<Route path="/" element={<Home />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/cadastro"	element={<Cadastro />}/>
+							<Route path="/categorias" element={<ListaCategorias/>} />
+							<Route path="/cadastrarcategoria" element={<FormCategoria />} />
+							<Route path="/editarcategoria/:id" element={<FormCategoria />} />
+							<Route path="/deletarcategoria/:id" element={<DeletarCategoria />} />
+              <Route path="/seguros" element={<ListaSeguros />} />
+              <Route path="/cadastrarseguro" element={<FormSeguro />} />
+              <Route path="/editarseguro/:id" element={<FormSeguro />} />
+              <Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
 						</Routes>
 			
 					<Footer />
@@ -30,7 +43,6 @@ return(
 			</AuthProvider>
   </>
 );
->>>>>>> b004c67750fa242f87326ba135ddcb7eca831685
 }
 
-export default App;
+export default App

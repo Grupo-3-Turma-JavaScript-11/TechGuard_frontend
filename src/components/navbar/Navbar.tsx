@@ -6,24 +6,24 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         
         {/* LOGO */}
-        <div className="text-2xl font-black text-emerald-600 tracking-tighter">
+        <Link to="/" className="text-2xl font-black text-emerald-600 tracking-tighter">
           TECH<span className="text-white font-bold">GUARD</span>
-        </div>
+        </Link>
 
         {/* LINKS DE NAVEGAÇÃO */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-bold text-white/80 uppercase tracking-wide">
           
-          {/* MENU SEGUROS */}
+          {/* MENU SEGUROS (Mapeado para /produtos no App.tsx) */}
           <div className="relative group">
             <button className="flex items-center hover:text-emerald-500 transition-colors uppercase py-2">
               Seguros
               <i className="fas fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
             </button>
             <div className="absolute left-0 top-full w-56 bg-slate-900 border-t-2 border-emerald-500 shadow-xl rounded-b-xl hidden group-hover:block">
-              <Link to="/meus-seguros" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors normal-case font-medium">
+              <Link to="/seguros" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors normal-case font-medium">
                 <i className="fas fa-list mr-2 text-emerald-500"></i> Meus Seguros
               </Link>
-              <Link to="/cadastrar-seguro" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors last:rounded-b-xl normal-case font-medium">
+              <Link to="/cadastrarseguro" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors last:rounded-b-xl normal-case font-medium">
                 <i className="fas fa-plus-circle mr-2 text-emerald-500"></i> Cadastrar Seguro
               </Link>
             </div>
@@ -39,15 +39,15 @@ function Navbar() {
               <Link to="/categorias" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors normal-case font-medium">
                 <i className="fas fa-tags mr-2 text-[#D4AF37]"></i> Categorias de Seguro
               </Link>
-              <Link to="/cadastrar-categoria" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors last:rounded-b-xl normal-case font-medium">
+              <Link to="/cadastrarcategoria" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors last:rounded-b-xl normal-case font-medium">
                 <i className="fas fa-folder-plus mr-2 text-[#D4AF37]"></i> Cadastrar Categoria
               </Link>
             </div>
           </div>
 
-          <a href="#coberturas" className="hover:text-emerald-500 transition-colors">Coberturas</a>
-          <a href="#planos" className="hover:text-emerald-500 transition-colors">Planos</a>
-          <a href="#faq" className="hover:text-emerald-500 transition-colors">Dúvidas</a>
+          <Link to="/sobrenos" className="hover:text-emerald-500 transition-colors uppercase">Sobre Nós</Link>
+          <a href="#planos" className="hover:text-emerald-500 transition-colors uppercase">Planos</a>
+          <a href="#faq" className="hover:text-emerald-500 transition-colors uppercase">Dúvidas</a>
           
           <span className="h-4 w-px bg-slate-700"></span>
           
