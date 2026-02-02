@@ -17,7 +17,7 @@ export default function Login() {
 
     useEffect(() => {
         if (usuario.token !== "") {
-            navigate('/home')
+            navigate('/')
         }
     }, [usuario])
 
@@ -76,7 +76,7 @@ export default function Login() {
           />
         </div>
 
-        <button className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 
