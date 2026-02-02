@@ -98,10 +98,10 @@ function Home() {
     <div className="absolute inset-0 flex flex-col justify-center items-center px-6">
       
       {/* CONTAINER SLIM (GLASSMORPHISM) */}
-      <div className="bg-slate-900/60 backdrop-blur-md p-8 md:p-10 rounded-[32px] border border-white/10 shadow-2xl max-w-2xl w-full text-center">
+      <div className="bg-slate-900/60 backdrop-blur-md p-8 md:p-12 rounded-[32px] border border-white/10 shadow-2xl max-w-3xl w-full text-center">
         
        {/* NOME DA MARCA ESTILIZADO (TECH + GUARD) COM ÍCONE AO LADO */}
-        <h1 className="flex items-center justify-center gap-4 text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
+        <h1 className="flex items-center justify-center gap-6 text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
           
 
           {/* TEXTO DIVIDIDO */}
@@ -114,7 +114,7 @@ function Home() {
           <img 
             src={LogoIcon} 
             alt="TechGuard Logo" 
-            className="w-10 h-10 md:w-14 md:h-14 object-contain" 
+            className="w-10 h-10 md:w-14 md:h-14 object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]" 
           />
         </h1>
         {/* SLOGAN */}
