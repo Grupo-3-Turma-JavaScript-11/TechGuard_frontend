@@ -37,7 +37,7 @@ return(
 							<Route path="/cadastrarseguro" element={<FormSeguro />} />
 							<Route path="/editarseguro/:id" element={<FormSeguro />} />
 							<Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
-							<Route path="/sobre" element={<Sobre />} />
+							<Route path="/sobrenos" element={<Sobre />} />
 										</Routes>
 			
 					<Footer />
