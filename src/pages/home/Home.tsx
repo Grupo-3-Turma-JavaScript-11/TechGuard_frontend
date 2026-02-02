@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, CaretLeft, CaretRight, DeviceTabletIcon } from "@phosphor-icons/react";
+import { CoberturaCard } from '../../components/cardshome/coberturacard/CoberturaCard';
+import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/EcossistemaCard';
+import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
 
 function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -9,6 +12,35 @@ function Home() {
     { url: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Proteção Total - Inteligência na gestão para seus eletrônicos." },
     { url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Foco no Corretor - Ferramentas pensadas para escalar seu negócio." },
     { url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Segurança Digital - O escudo que seus dispositivos precisam." }
+  ];
+
+  const coberturas = [
+    { title: "Roubo e Furto", desc: "Proteção contra ataques e invasões mediante arrombamento.", icon: Handbag },
+    { title: "Danos Materiais", desc: "Quedas acidentais que danificam o funcionamento do aparelho.", icon: Hammer },
+    { title: "Líquidos", desc: "Seu café caiu no notebook? Nós resolvemos o reparo.", icon: Drop },
+    { title: "Danos Elétricos", desc: "Descargas elétricas durante o carregamento do dispositivo.", icon: Lightning },
+  ];
+
+  const ecossistema = [
+    { title: "Smartphones", sub: "iOS, Android e dobráveis.", icon: DeviceMobile },
+    { title: "Notebooks", sub: "Laptops, Macbooks e Workstations.", icon: Laptop },
+    { title: "Tablets", sub: "iPads e tablets de alta performance.", icon: DeviceTabletCameraIcon },
+    { title: "Smartwatches", sub: "Relógios inteligentes e wearables.", icon: Watch },
+  ];
+
+  const depoimentos = [
+    {
+      nome: "Ricardo Alvez",
+      texto: "Acionei o seguro após derrubar meu celular na piscina. Em 4 dias meu aparelho foi reparado e devolvido. Experiência incrível!",
+      avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Ricardo",
+      desde: "2024"
+    },
+    {
+      nome: "Mariana Costa",
+      texto: "Processo de contratação super rápido. Fiz tudo pelo celular e a vistoria foi aprovada em minutos.",
+      avatar: "https://api.dicebear.com/9.x/fun-emoji/svg?eyes=closed",
+      desde: "2023"
+    }
   ];
 
   // Função para rolar
@@ -125,47 +157,22 @@ function Home() {
         </div>
       </header>
 
-      {/* COBERTURAS */}
-      <section id="coberturas" className="py-20 bg-gray-800 w-full">
+      {/* SEÇÃO DE COBERTURAS */}
+      <section id="coberturas" className="py-20 bg-gray-800 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-emerald-500">O que protegemos</h2>
+          <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-emerald-500">
+            O que protegemos
+          </h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                  <Handbag size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">Roubo e Furto</h3>
-                <p className="text-slate-800 text-sm">Proteção contra ataques e invasões mediante arrombamento.</p>
-              </div>
-            </div>
-            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Hammer size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">Danos Materiais</h3>
-                <p className="text-slate-800 text-sm">Quedas acidentais que danificam o funcionamento do aparelho.</p>
-              </div>
-            </div>
-            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Drop size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">Líquidos</h3>
-                <p className="text-slate-800 text-sm">Seu café caiu no notebook? Nós resolvemos o reparo.</p>
-              </div>
-            </div>
-            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Lightning size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="font-bold text-xl mb-2">Danos Elétricos</h3>
-                <p className="text-slate-800 text-sm">Descargas elétricas durante o carregamento do dispositivo.</p>
-              </div>
-            </div>
+            {coberturas.map((item, index) => (
+              <CoberturaCard 
+                key={index}
+                title={item.title}
+                desc={item.desc}
+                Icon={item.icon}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -176,58 +183,45 @@ function Home() {
       </div>
 
       {/* ECOSSISTEMA DIGITAL */}
-<section className="py-20 bg-gray-800">
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-      <div className="max-w-xl text-center md:text-left">
-        <h2 className="text-3xl font-black text-emerald-500 mb-4">Proteção para todo o seu ecossistema digital</h2>
-        <p className="text-emerald-200 text-lg">Não importa a marca ou o modelo, temos um plano sob medida para o eletrônico que você não vive sem.</p>
-      </div>
-      <div className="hidden md:block">
-        <span className="text-emerald-500 font-bold border-b-2 border-blue-600">Marcas parceiras e homologadas</span>
-      </div>
-    </div>
+      <section className="py-20 bg-gray-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-12">
+            <div className="max-w-xl text-center md:text-left">
+              <h2 className="text-3xl font-black text-emerald-500 mb-4 uppercase">
+                Proteção para todo o seu ecossistema digital
+              </h2>
+              <p className="text-emerald-200 text-lg italic">
+                Não importa a marca ou o modelo, temos um plano sob medida.
+              </p>
+            </div>
+            <div className="hidden md:block">
+              <span className="text-emerald-500 font-bold border-b-2 border-[#D4AF37] pb-1">
+                Marcas parceiras e homologadas
+              </span>
+            </div>
+          </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {/* Smartphones */}
-      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-        <DeviceMobile size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
-        <h3 className="font-bold text-xl group-hover:text-white">Smartphones</h3>
-        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iOS, Android e dobráveis.</p>
-      </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {ecossistema.map((item, index) => (
+              <EcossistemaCard 
+                key={index}
+                title={item.title}
+                sub={item.sub}
+                Icon={item.icon}
+              />
+            ))}
+          </div>
 
-      {/* Notebooks */}
-      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-        <Laptop size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
-        <h3 className="font-bold text-xl group-hover:text-white">Notebooks</h3>
-        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Laptops, Macbooks e Workstations.</p>
-      </div>
-
-      {/* Tablets */}
-      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-        <DeviceTabletCameraIcon size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
-        <h3 className="font-bold text-xl group-hover:text-white">Tablets</h3>
-        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iPads e tablets de alta performance.</p>
-      </div>
-
-      {/* Smartwatches */}
-      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-        <Watch size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
-        <h3 className="font-bold text-xl group-hover:text-white">Smartwatches</h3>
-        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Relógios inteligentes e wearables.</p>
-      </div>
-    </div>
-
-    <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-  <AppleLogo size={32} weight="fill" className="text-white" />
-  <AndroidLogo size={32} weight="fill" className="text-white" />
-  <WindowsLogo size={32} weight="fill" className="text-white" />
-  
-  <span className="font-bold text-xl italic text-white font-serif underline decoration-white">SAMSUNG</span>
-  <span className="font-bold text-xl italic text-white font-sans">DELL</span>
-</div>
-  </div>
-</section>
+          {/* Marcas Logotipos */}
+          <div className="mt-16 flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+            <AppleLogo size={40} weight="fill" className="text-white hover:text-emerald-400 transition-colors" />
+            <AndroidLogo size={40} weight="fill" className="text-white hover:text-emerald-400 transition-colors" />
+            <WindowsLogo size={40} weight="fill" className="text-white hover:text-emerald-400 transition-colors" />
+            <span className="font-bold text-2xl italic text-white font-serif underline decoration-[#D4AF37] decoration-2 underline-offset-8">SAMSUNG</span>
+            <span className="font-bold text-2xl italic text-white font-sans hover:text-emerald-400 transition-colors">DELL</span>
+          </div>
+        </div>
+      </section>
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
@@ -288,46 +282,21 @@ function Home() {
 
       {/* CLIENTES */}
       <section className="py-20 bg-gray-800 w-full text-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-black text-emerald-500">O que nossos clientes dizem</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-slate-600 p-8 rounded-2xl border border-slate-700 relative overflow-hidden group">
-              <div className="flex text-amber-400/70 mb-4 text-xl">
-                <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
-              </div>
-              <i className="fas fa-quote-right absolute -right-4 -bottom-4 text-slate-700 text-9xl transition-transform group-hover:scale-110"></i>
-              <p className="italic text-slate-200 mb-6">"Acionei o seguro após derrubar meu celular na piscina. Em 4 dias meu aparelho foi reparado e devolvido. Experiência incrível!"</p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-4">
-                  <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Ricardo" className="w-full h-full rounded-full border-2 border-emerald-500 bg-emerald-50" alt="Avatar" />
-                </div>
-                <div>
-                  <p className="font-bold">Ricardo Alvez <i className="fas fa-check-circle text-blue-400 ml-2 text-xs" title="Seguro Verificado"></i></p>
-                  <p className="text-xs text-emerald-500">Cliente desde 2024</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-slate-600 p-8 rounded-2xl border border-slate-700 relative overflow-hidden group">
-              <div className="flex text-amber-400/70 mb-4 text-xl">
-                <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
-              </div>
-              <i className="fas fa-quote-right absolute -right-4 -bottom-4 text-slate-700 text-9xl transition-transform group-hover:scale-110"></i>
-              <p className="italic text-slate-200 mb-6">"Processo de contratação super rápido. Fiz tudo pelo celular e a vistoria foi aprovada em minutos."</p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-4">
-                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ricardo" className="w-full h-full rounded-full border-2 border-emerald-500 bg-emerald-50" alt="Avatar" />
-                </div>
-                <div>
-                  <p className="font-bold">Mariana Costa<i className="fas fa-check-circle text-blue-400 ml-2 text-xs" title="Seguro Verificado"></i></p>
-                  <p className="text-xs text-emerald-500">Cliente desde 2023</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-black text-[#10B981] uppercase tracking-widest">
+            O que nossos clientes dizem
+          </h2>
+          <div className="h-1 w-20 bg-[#D4AF37] mx-auto mt-4 rounded-full"></div>
         </div>
-      </section>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {depoimentos.map((item, index) => (
+            <ClienteCard key={index} {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
