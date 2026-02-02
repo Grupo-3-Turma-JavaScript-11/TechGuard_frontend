@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
+import Sobre from './pages/sobre/Sobre';
 
 function App() {
 
@@ -22,6 +23,8 @@ return(
 							<Route path="/" element={<Home />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/cadastro"	element={<Cadastro />}/>
+							<Route path="/sobre" element={<Sobre/>}/>
+							
 						</Routes>
 			
 					<Footer />
