@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 import type Usuario from "../../models/usuario"
 import { ToastAlert } from "../../utils/ToastAlert"
 import { cadastrarUsuario } from "../../service/Service";
-import { ClipLoader } from "react-spinners"
 
 
 export default function Cadastro() {

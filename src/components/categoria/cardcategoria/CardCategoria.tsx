@@ -5,7 +5,7 @@ interface CardCategoriaProps{
     categoria: Categoria
 }
 
-function CardCategoria({ categoria}: CardCategoriaProps) {
+function CardCategoria({ categoria }: CardCategoriaProps) {
     return (
          <div className='bg-gray-200 flex flex-col rounded-2xl overflow-hidden justify-between transform transition duration-300 hover:scale-105 shadow-xl/20'>
             <header className='py-2 px-6 bg-blue-950 text-white text-center font-bold text-2xl'>
