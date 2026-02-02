@@ -156,7 +156,13 @@ export default function Cadastro() {
         </div>
 
         <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
-          Cadastrar
+          { isLoading ? 
+                  <ClipLoader 
+                    color="#ffffff" 
+                    size={24}
+                  /> : 
+                  <span>Cadastrar</span>
+                }
         </button>
         </form>
       </div>
