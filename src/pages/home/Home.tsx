@@ -1,28 +1,127 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const slides = [
+    { url: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Proteção Total - Inteligência na gestão para seus eletrônicos." },
+    { url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Foco no Corretor - Ferramentas pensadas para escalar seu negócio." },
+    { url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80", title: "TechGuard", sub: "Segurança Digital - O escudo que seus dispositivos precisam." }
+  ];
+
+  // Função para rolar
+  const scrollToSlide = (index: number) => {
+    if (scrollRef.current) {
+      const slideWidth = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({
+        left: slideWidth * index,
+        behavior: 'smooth'
+      });
+      setActiveSlide(index);
+    }
+  };
+
+  const handleNext = () => {
+    const nextIndex = activeSlide === slides.length - 1 ? 0 : activeSlide + 1;
+    scrollToSlide(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = activeSlide === 0 ? slides.length - 1 : activeSlide - 1;
+    scrollToSlide(prevIndex);
+  };
+
+  // Lógica do Autoplay (Passar sozinho)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000); // 5000ms = 5 segundos
+
+    return () => clearInterval(interval); // Limpa o timer ao sair da página
+  }, [activeSlide]); // Reinicia o timer sempre que o slide muda
+
   return (
     <div className="bg-white font-sans text-gray-900">
       
 
-      {/* HEADER */}
-      <header className="relative h-[500px] bg-gray-900 overflow-hidden text-white">
+      {/* HEADER / CARROSSEL */}
+      <header className="relative h-[600px] bg-gray-900 overflow-hidden group">
         
-        <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&w=1600&q=80" className="w-full h-full object-cover opacity-50" alt="Banner" />
+        {/* Container de Scroll */}
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth h-full hide-scrollbar pointer-events-none md:pointer-events-auto"
+        >
+          {slides.map((slide, index) => (
+  <div key={index} className="flex-shrink-0 w-full h-full snap-center relative">
+    <img src={slide.url} className="w-full h-full object-cover opacity-50" alt={slide.title} />
+    
+    {/* Overlay para profundidade */}
+    <div className="absolute inset-0 bg-black/30"></div>
+
+    {/* Container Pai Centralizado */}
+    <div className="absolute inset-0 flex flex-col justify-center items-center px-6">
+      
+      {/* CONTAINER SLIM (GLASSMORPHISM) */}
+      <div className="bg-slate-900/60 backdrop-blur-md p-8 md:p-10 rounded-[32px] border border-white/10 shadow-2xl max-w-2xl w-full text-center">
+        
+        {/* NOME DA MARCA ESTILIZADO (TECH + GUARD) */}
+        <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
+          <span className="text-[#10B981]">TECH</span>
+          <span className="text-white">GUARD</span>
+        </h1>
+        
+        {/* SLOGAN */}
+        <p className="text-base md:text-lg font-bold text-[#D4AF37] mb-6 italic tracking-tight">
+          Inteligência na gestão, confiança na proteção.
+        </p>
+
+        {/* LINHA DECORATIVA CURTA */}
+        <div className="h-1 w-12 bg-[#10B981] mx-auto mb-6 rounded-full opacity-80"></div>
+        
+        {/* FRASE DO SLIDE */}
+        <h2 className="text-lg md:text-xl font-medium text-gray-100 leading-relaxed mb-8">
+          {slide.sub}
+        </h2>
+
+        {/* BOTÃO */}
+        <button className="bg-[#10B981] text-white px-8 py-3.5 rounded-full font-black text-base hover:bg-[#059669] transition-all shadow-xl hover:scale-105 active:scale-95">
+          Contratar Agora
+        </button>
+      </div>
+
+    </div>
+  </div>
+))}
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex flex-col justify-center items-start">
-          <span className="bg-[#D4AF37] px-3 py-1 rounded text-sm font-bold mb-4">NOVIDADE</span>
-          <h1 className="text-5xl font-black mb-4">TechGuard</h1>
-          <p className="text-xl max-w-lg mb-8 text-gray-200">Inteligência na gestão, confiança na proteção.</p>
-          <button className="bg-green-500 text-white px-10 py-4 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">Contratar Agora</button>
-        </div>
+        {/* Setas de Controlo (Escondidas no mobile, aparecem no hover no desktop) */}
+        <button 
+          onClick={handlePrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20"
+        >
+          <CaretLeft size={32} />
+        </button>
+        <button 
+          onClick={handleNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20"
+        >
+          <CaretRight size={32} />
+        </button>
 
-        <div className="absolute bottom-6 w-full flex justify-center space-x-2">
-          <div className="w-12 h-1 bg-blue-600"></div>
-          <div className="w-12 h-1 bg-white/30"></div>
-          <div className="w-12 h-1 bg-white/30"></div>
+        {/* Indicadores (Barrinhas em baixo) */}
+        <div className="absolute bottom-8 w-full flex justify-center space-x-3 z-20">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToSlide(i)}
+              className="group h-2 transition-all duration-300 relative"
+            >
+              <div className={`h-full rounded-full transition-all duration-500 ${activeSlide === i ? 'w-16 bg-[#10B981]' : 'w-8 bg-white/30'}`}></div>
+            </button>
+          ))}
         </div>
       </header>
 
@@ -31,40 +130,38 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-emerald-500">O que protegemos</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
               <div className="text-center">
                 <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                  <i className="fas fa-hand-holding-usd text-3xl"></i>
+                  <Handbag size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Roubo e Furto</h3>
                 <p className="text-slate-800 text-sm">Proteção contra ataques e invasões mediante arrombamento.</p>
               </div>
             </div>
-
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
               <div className="text-center">
                 <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <i className="fas fa-hammer text-3xl"></i>
+                  <Hammer size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Danos Materiais</h3>
                 <p className="text-slate-800 text-sm">Quedas acidentais que danificam o funcionamento do aparelho.</p>
               </div>
 
             </div>
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
               <div className="text-center">
                 <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <i className="fas fa-tint text-3xl"></i>
+                  <Drop size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Líquidos</h3>
                 <p className="text-slate-800 text-sm">Seu café caiu no notebook? Nós resolvemos o reparo.</p>
               </div>
             </div>
-
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+            <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
               <div className="text-center">
                 <div className="w-20 h-20 bg-white/70 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <i className="fas fa-bolt text-3xl"></i>
+                  <Lightning size={40} weight="duotone" className="text-[#1F2937] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-bold text-xl mb-2">Danos Elétricos</h3>
                 <p className="text-slate-800 text-sm">Descargas elétricas durante o carregamento do dispositivo.</p>
@@ -80,48 +177,58 @@ function Home() {
       </div>
 
       {/* ECOSSISTEMA DIGITAL */}
-      <section className="py-20 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-            <div className="max-w-xl text-center md:text-left">
-              <h2 className="text-3xl font-black text-emerald-500 mb-4">Proteção para todo o seu ecossistema digital</h2>
-              <p className="text-emerald-200 text-lg">Não importa a marca ou o modelo, temos um plano sob medida para o eletrônico que você não vive sem.</p>
-            </div>
-            <div className="hidden md:block">
-              <span className="text-emerald-500 font-bold border-b-2 border-blue-600">Marcas parceiras e homologadas</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#d6a935] to-[#fad394] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <i className="fas fa-mobile-alt text-4xl text-emerald-600 group-hover:text-white mb-6"></i>
-              <h3 className="font-bold text-xl group-hover:text-white">Smartphones</h3>
-              <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iOS, Android e dobráveis.</p>
-            </div>
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#d6a935] to-[#fad394] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <i className="fas fa-laptop text-4xl text-emerald-600 group-hover:text-white mb-6"></i>
-              <h3 className="font-bold text-xl group-hover:text-white">Notebooks</h3>
-              <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Laptops, Macbooks e Workstations.</p>
-            </div>
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#d6a935] to-[#fad394] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <i className="fas fa-tablet-alt text-4xl text-emerald-600 group-hover:text-white mb-6"></i>
-              <h3 className="font-bold text-xl group-hover:text-white">Tablets</h3>
-              <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iPads e tablets de alta performance.</p>
-            </div>
-            <div className="group p-8 rounded-3xl border border-white/20 bg-gradient-to-br from-[#d6a935] to-[#fad394] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
-              <i className="fas fa-watch text-4xl text-emerald-600 group-hover:text-white mb-6"></i>
-              <h3 className="font-bold text-xl group-hover:text-white">Smartwatches</h3>
-              <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Relógios inteligentes e wearables.</p>
-            </div>
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <i className="fab fa-apple text-3xl text-white"></i>
-            <i className="fab fa-android text-3xl text-white"></i>
-            <i className="fab fa-windows text-3xl text-white"></i>
-            <span className="font-bold text-xl italic text-white font-serif underline decoration-white">SAMSUNG</span>
-            <span className="font-bold text-xl italic text-white font-sans">DELL</span>
-          </div>
-        </div>
-      </section>
+<section className="py-20 bg-gray-800">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="flex flex-col md:flex-row items-center justify-between mb-12">
+      <div className="max-w-xl text-center md:text-left">
+        <h2 className="text-3xl font-black text-emerald-500 mb-4">Proteção para todo o seu ecossistema digital</h2>
+        <p className="text-emerald-200 text-lg">Não importa a marca ou o modelo, temos um plano sob medida para o eletrônico que você não vive sem.</p>
+      </div>
+      <div className="hidden md:block">
+        <span className="text-emerald-500 font-bold border-b-2 border-blue-600">Marcas parceiras e homologadas</span>
+      </div>
+    </div>
+
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* Smartphones */}
+      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+        <DeviceMobile size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
+        <h3 className="font-bold text-xl group-hover:text-white">Smartphones</h3>
+        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iOS, Android e dobráveis.</p>
+      </div>
+
+      {/* Notebooks */}
+      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+        <Laptop size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
+        <h3 className="font-bold text-xl group-hover:text-white">Notebooks</h3>
+        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Laptops, Macbooks e Workstations.</p>
+      </div>
+
+      {/* Tablets */}
+      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+        <DeviceTabletCameraIcon size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
+        <h3 className="font-bold text-xl group-hover:text-white">Tablets</h3>
+        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">iPads e tablets de alta performance.</p>
+      </div>
+
+      {/* Smartwatches */}
+      <div className="group p-8 rounded-3xl border border-[#d6a935]/90 bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] hover:from-emerald-500 hover:to-emerald-700 transition-all duration-500 cursor-pointer shadow-lg">
+        <Watch size={44} weight="duotone" className="text-emerald-600 group-hover:text-white mb-6 transition-colors" />
+        <h3 className="font-bold text-xl group-hover:text-white">Smartwatches</h3>
+        <p className="text-sm text-slate-900 group-hover:text-blue-100 mt-2">Relógios inteligentes e wearables.</p>
+      </div>
+    </div>
+
+    <div className="mt-12 flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
+  <AppleLogo size={32} weight="fill" className="text-white" />
+  <AndroidLogo size={32} weight="fill" className="text-white" />
+  <WindowsLogo size={32} weight="fill" className="text-white" />
+  
+  <span className="font-bold text-xl italic text-white font-serif underline decoration-white">SAMSUNG</span>
+  <span className="font-bold text-xl italic text-white font-sans">DELL</span>
+</div>
+  </div>
+</section>
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
