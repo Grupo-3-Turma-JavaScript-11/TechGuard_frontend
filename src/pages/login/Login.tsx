@@ -21,6 +21,16 @@ function Login() {
         }
     }, [usuario])
 
+    useEffect(() => {
+        if (usuario.token !== "") {
+        if (usuario.tipo === "corretor" || usuario.tipo === "admin") {
+          navigate('/home'); 
+      } else {
+          navigate('/home'); 
+    }
+  }
+}, [usuario, navigate]);
+
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuarioLogin({
             ...usuarioLogin,
