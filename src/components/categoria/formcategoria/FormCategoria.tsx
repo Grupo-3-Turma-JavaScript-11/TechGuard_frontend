@@ -4,6 +4,7 @@ import { ClipLoader } from "react-spinners";
 import type Categoria from "../../../models/categoria";
 import { atualizar, buscar, cadastrar } from "../../../service/Service";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function FormCategoria() {
 
@@ -59,16 +60,16 @@ function FormCategoria() {
                 await atualizar(`/categorias/${categoria.id}`, categoria, setCategoria,
                     {
                 headers: { 
-                    Authorization: token
+                 Authorization: token
                  }
             })
                 
-                alert('A categoria foi atualizado com sucesso!')
+                ToastAlert('A categoria foi atualizado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar a categoria.')
+                    ToastAlert('Erro ao atualizar a categoria', 'erro')
                 }
 
             }
@@ -80,12 +81,12 @@ function FormCategoria() {
                     Authorization: token
                  }
             })
-                alert('a Categoria foi cadastrado com sucesso!')
+                ToastAlert('A categoria foi cadastrado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                    handleLogout();
                 } else {
-                    alert('Erro ao cadastrar a categoria.')
+                    ToastAlert('Erro ao cadastrar a categoria', 'erro')
                 }
 
             }

@@ -19,7 +19,15 @@ export const AuthContext = createContext({} as AuthContextProps)
 
 export function AuthProvider({ children }: AuthProviderProps) {
 
-    const [usuario, setUsuario] = useState<UsuarioLogin>({} as UsuarioLogin)
+    const [usuario, setUsuario] = useState<UsuarioLogin>({
+        id: 0,
+        nome: "",
+        email: "",
+        senha: "",
+        tipo: "",
+        foto: "",
+        token: ""
+    })
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -34,13 +42,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(false)
     }
 
+    console.log(setUsuario)
+
     function handleLogout() {
-        setUsuario({} as UsuarioLogin)
+        setUsuario({
+            id: 0,
+            nome: "",
+            email: "",
+            senha: "",
+            tipo: "",
+            foto: "",
+            token: ""
+        })        
         ToastAlert("Usuário deslogado com sucesso!", "sucesso")
     }
 
     return (
-        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, isLoading }}>
+        <AuthContext.Provider value={{ usuario, handleLogout, handleLogin, isLoading }}>  
             {children}
         </AuthContext.Provider>
     )

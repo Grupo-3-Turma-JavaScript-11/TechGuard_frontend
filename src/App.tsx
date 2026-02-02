@@ -24,7 +24,6 @@ return(
 				<ToastContainer />
 				<BrowserRouter>
 					<Navbar />
-
 						<Routes>
 							<Route path="/" element={<Login />} />
 							<Route path="/home" element={<Home />} />
@@ -38,8 +37,7 @@ return(
 							<Route path="/editarseguro/:id" element={<FormSeguro />} />
 							<Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
 							<Route path="/sobrenos" element={<Sobre />} />
-										</Routes>
-			
+						</Routes>
 					<Footer />
 				</BrowserRouter>
 			</AuthProvider>
