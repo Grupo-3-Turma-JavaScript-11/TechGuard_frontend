@@ -8,6 +8,10 @@ import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Login from './pages/login/Login';
 import Cadastro from './pages/cadastro/Cadastro';
+import Perfil from './pages/perfil/Perfil';
+import DeletarPerfil from './pages/perfil/DeletarPerfil';
+import EditarPerfil from './pages/perfil/editarPerfil';
+
 
 function App() {
 
@@ -22,6 +26,11 @@ return(
 							<Route path="/" element={<Home />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/cadastro"	element={<Cadastro />}/>
+							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/editarperfil" element={<EditarPerfil />} />
+							<Route path="/deletarperfil" element={<DeletarPerfil />} />
+
+							
 						</Routes>
 			
 					<Footer />

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
     return (
             <nav className="bg-slate-950/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b-4 border-emerald-500">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                
+                <Link to="/">
                 <div className="text-2xl font-black text-emerald-600 tracking-tighter">
                     TECH<span className="text-white font-bold">GUARD</span>
                 </div>
+                </Link>
 
                 <div className="hidden md:flex items-center space-x-8 text-sm font-bold text-white/80 uppercase tracking-wide">
                     <a href="#dispositivos" className="hover:text-emerald-500 transition-colors">Dispositivos</a>
@@ -23,9 +26,13 @@ import { Link } from "react-router-dom";
                     <a href="#" className="hidden lg:block text-xs font-black text-emerald-500 uppercase tracking-widest hover:text-[#D4AF37] transition-colors border-b border-transparent hover:border-[#D4AF37]">
                     <i className="fas fa-briefcase mr-1"></i> Sou Corretor
                     </a>
-                    <button className="bg-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:bg-[#D4AF37] hover:shadow-lg hover:shadow-amber-200 transition-all duration-300">
-                    Área do Cliente
-                    </button>
+
+                    <Link
+                        to="/perfil"
+                        className="bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 transition">
+                        Área do Cliente
+                    </Link>
+                    
                     <button className="md:hidden text-white text-2xl">
                     <i className="fas fa-bars"></i>
                     </button>
