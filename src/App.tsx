@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify'
 import ListaCategorias from './components/categoria/listacategorias/ListaCategorias'
 import FormCategoria from './components/categoria/formcategoria/FormCategoria';
 import DeletarCategoria from './components/categoria/deletarcategoria/DeletarCategoria';
+import Cadastro from './pages/cadastro/Cadastro'
+import Login from './pages/login/Login'
 
 
 function App() {
@@ -19,9 +21,10 @@ function App() {
 				  {/* <Navbar />  */}
 				    <div className="min-h-[80vh]">
 					  <Routes>
-						
-						  {/* <Route path="/cadastro"	element={<Cadastro />}/> */}
-          	  <Route path="/" element={<ListaCategorias />} />
+              {/* <Route path="/" element={<Home />} /> */}
+							<Route path="/login" element={<Login />} />
+							<Route path="/cadastro"	element={<Cadastro />}/>
+						  <Route path="/" element={<ListaCategorias />} />
 						  <Route path="/categorias" element={<ListaCategorias/>} />
 						  <Route path="/cadastrarcategoria" element={<FormCategoria />} />
 						  <Route path="/editarcategoria/:id" element={<FormCategoria />} />
