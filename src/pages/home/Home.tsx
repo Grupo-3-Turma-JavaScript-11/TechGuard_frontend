@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, CaretLeft, CaretRight, DeviceTabletIcon } from "@phosphor-icons/react";
+import { Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, CaretLeft, CaretRight, DeviceTabletIcon, Plus } from "@phosphor-icons/react";
 import { CoberturaCard } from '../../components/cardshome/coberturacard/CoberturaCard';
 import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/EcossistemaCard';
 import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
+import LogoIcon from '../../assets/img/logo-icon.png';
 
 function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -99,12 +100,23 @@ function Home() {
       {/* CONTAINER SLIM (GLASSMORPHISM) */}
       <div className="bg-slate-900/60 backdrop-blur-md p-8 md:p-10 rounded-[32px] border border-white/10 shadow-2xl max-w-2xl w-full text-center">
         
-        {/* NOME DA MARCA ESTILIZADO (TECH + GUARD) */}
-        <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
-          <span className="text-[#10B981]">TECH</span>
-          <span className="text-white">GUARD</span>
+       {/* NOME DA MARCA ESTILIZADO (TECH + GUARD) COM ÍCONE AO LADO */}
+        <h1 className="flex items-center justify-center gap-4 text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
+          
+
+          {/* TEXTO DIVIDIDO */}
+          <div className="flex">
+            <span className="text-[#10B981]">TECH</span>
+            <span className="text-white">GUARD</span>
+          </div>
+
+          {/* IMAGEM DO ESCUDO */}
+          <img 
+            src={LogoIcon} 
+            alt="TechGuard Logo" 
+            className="w-10 h-10 md:w-14 md:h-14 object-contain" 
+          />
         </h1>
-        
         {/* SLOGAN */}
         <p className="text-base md:text-lg font-bold text-[#D4AF37] mb-6 italic tracking-tight">
           Inteligência na gestão, confiança na proteção.
@@ -311,7 +323,11 @@ function Home() {
             <details className="group bg-emerald-600 rounded-xl">
               <summary className="flex justify-between items-center p-6 cursor-pointer font-bold list-none">
                 Qual é o período de carência?
-                <i className="fas fa-plus text-[#d4af37] transition-transform duration-300"></i>
+                <Plus 
+                  size={24} 
+                  weight="bold" 
+                  className="text-[#d4af37] transition-transform duration-300 group-hover:rotate-90" 
+                />
               </summary>
               <div className="px-6 pb-6 text-gray-100">
                 Após a aprovação da vistoria digital do seu aparelho, a cobertura é imediata para roubo e danos acidentais.
@@ -320,7 +336,11 @@ function Home() {
             <details className="group bg-emerald-600 rounded-xl">
               <summary className="flex justify-between items-center p-6 cursor-pointer font-bold list-none">
                 Preciso da Nota Fiscal do aparelho?
-                <i className="fas fa-plus text-[#d4af37] transition-transform"></i>
+                <Plus 
+                  size={24} 
+                  weight="bold" 
+                  className="text-[#d4af37] transition-transform duration-300 group-hover:rotate-90" 
+                />
               </summary>
               <div className="px-6 pb-6 text-gray-100">
                 Sim, a Nota Fiscal é indispensável para comprovar o valor e a propriedade do seu eletrônico no momento do sinistro.
@@ -329,7 +349,11 @@ function Home() {
             <details className="group bg-emerald-600 rounded-xl">
               <summary className="flex justify-between items-center p-6 cursor-pointer font-bold list-none">
                 Como funciona a franquia?
-                <i className="fas fa-plus text-[#d4af37] transition-transform"></i>
+                <Plus 
+                  size={24} 
+                  weight="bold" 
+                  className="text-[#d4af37] transition-transform duration-300 group-hover:rotate-90" 
+                />
               </summary>
               <div className="px-6 pb-6 text-gray-100">
                 A franquia é um valor fixo pago apenas em caso de sinistro aprovado, variando conforme o plano e modelo do aparelho selecionado.

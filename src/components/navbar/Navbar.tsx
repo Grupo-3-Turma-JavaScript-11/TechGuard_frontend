@@ -46,8 +46,8 @@ function Navbar() {
           </div>
 
           <Link to="/sobrenos" className="hover:text-emerald-500 transition-colors uppercase">Sobre Nós</Link>
-          <a href="#planos" className="hover:text-emerald-500 transition-colors uppercase">Planos</a>
-          <a href="#faq" className="hover:text-emerald-500 transition-colors uppercase">Dúvidas</a>
+          <a href="/#planos" className="hover:text-emerald-500 transition-colors uppercase">Planos</a>
+          <a href="/#faq" className="hover:text-emerald-500 transition-colors uppercase">Dúvidas</a>
           
           <span className="h-4 w-px bg-slate-700"></span>
           
