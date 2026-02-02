@@ -7,8 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 
 function App() {
- 
-
 
 return(
   <>
@@ -27,7 +25,7 @@ return(
 				</BrowserRouter>
 			</AuthProvider>
   </>
-)
+);
 }
 
 export default App
