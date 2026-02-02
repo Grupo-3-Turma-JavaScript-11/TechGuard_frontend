@@ -2,3 +2,12 @@
 details summary::-webkit-details-marker { display:none; }
 details summary { list-style: none; }
 details[open] summary i { transform: rotate(180deg); }
+
+/* Esconder a barra de rolagem no carrossel mantendo a funcionalidade */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;     /* Firefox */
+}

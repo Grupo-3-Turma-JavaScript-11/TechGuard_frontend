@@ -8,7 +8,7 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
               <div className="text-2xl font-black text-emerald-500 tracking-tighter mb-6 uppercase">
-                TECH<span className="text-white font-bold">SAFE</span>
+                TECH<span className="text-white font-bold">GUARD</span>
               </div>
               <p className="text-sm leading-relaxed mb-6">
                 Transformando a maneira como você protege seus eletrônicos com tecnologia e transparência.
@@ -31,7 +31,7 @@ function Footer() {
             <div>
               <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6 border-b border-emerald-500/30 pb-2 inline-block">Institucional</h4>
               <ul className="space-y-4 text-sm">
-                <li><a href="#" className="hover:text-emerald-400 transition">Sobre a TechSafe</a></li>
+                <li><a href="#" className="hover:text-emerald-400 transition">Sobre a TechGuard</a></li>
                 <li><a href="#" className="hover:text-emerald-400 transition">Trabalhe Conosco</a></li>
                 <li><a href="#" className="hover:text-emerald-400 transition">Central de Ajuda</a></li>
                 <li><a href="#" className="hover:text-emerald-400 transition">Política de Privacidade</a></li>
@@ -58,9 +58,9 @@ function Footer() {
           </div>
           <div className="pt-8 border-t border-slate-800 text-[11px] leading-relaxed">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <p>© 2026 TechSafe Seguros S.A. - CNPJ 00.000.000/0001-00</p>
+              <p>© 2026 TechGuard Seguros S.A. - CNPJ 00.000.000/0001-00</p>
               <p className="text-center md:text-right max-w-2xl">
-                A TechSafe é uma plataforma digital de seguros. A comercialização de seguros é garantida por [Nome da Seguradora Parceira]. O registro deste plano na SUSEP não implica, por parte da autarquia, incentivo ou recomendação à sua comercialização.
+                A TechGuard é uma plataforma digital de seguros. A comercialização de seguros é garantida por [Nome da Seguradora Parceira]. O registro deste plano na SUSEP não implica, por parte da autarquia, incentivo ou recomendação à sua comercialização.
               </p>
             </div>
           </div>
