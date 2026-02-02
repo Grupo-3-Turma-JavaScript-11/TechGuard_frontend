@@ -42,8 +42,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(false)
     }
 
-    console.log(setUsuario)
-
     function handleLogout() {
         setUsuario({
             id: 0,

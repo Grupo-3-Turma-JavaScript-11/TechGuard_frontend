@@ -11,7 +11,11 @@ function DeletarCategoria() {
 
     const navigate = useNavigate()
 
-    const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
+    const [categoria, setCategoria] = useState<Categoria>({
+        id: 0,
+        descricao: '',
+        nomeCategoria: ''
+    })
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
     
