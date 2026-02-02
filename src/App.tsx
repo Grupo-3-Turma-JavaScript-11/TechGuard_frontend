@@ -26,8 +26,8 @@ return(
 					<Navbar />
 
 						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="/login" element={<Login />} />
+							<Route path="/" element={<Login />} />
+							<Route path="/home" element={<Home />} />
 							<Route path="/cadastro"	element={<Cadastro />}/>
 							<Route path="/categorias" element={<ListaCategorias/>} />
 							<Route path="/cadastrarcategoria" element={<FormCategoria />} />
