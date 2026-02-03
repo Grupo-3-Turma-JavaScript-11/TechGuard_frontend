@@ -21,6 +21,16 @@ function Login() {
         }
     }, [usuario])
 
+    useEffect(() => {
+        if (usuario.token !== "") {
+        if (usuario.tipo === "corretor" || usuario.tipo === "admin") {
+          navigate('/home'); 
+      } else {
+          navigate('/home'); 
+    }
+  }
+}, [usuario, navigate]);
+
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuarioLogin({
             ...usuarioLogin,
@@ -76,7 +86,9 @@ function Login() {
           />
         </div>
 
-        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+        <button 
+          type="submit"
+          className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 

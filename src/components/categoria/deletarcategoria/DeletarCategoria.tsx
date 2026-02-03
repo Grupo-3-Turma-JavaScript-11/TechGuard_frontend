@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import type Categoria from "../../../models/categoria"
 import { ClipLoader } from "react-spinners"
 import { buscar, deletar } from "../../../service/Service"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { ToastAlert } from "../../../utils/ToastAlert"
+import { ShieldCheckIcon} from "@phosphor-icons/react"
 
 
 
@@ -82,29 +83,48 @@ function DeletarCategoria() {
     }
     
     return (
-        <div className='container w-1/3 mx-auto'>
-            <h1 className='text-4xl text-center pd-4 pt-3 font-medium mb-2'>Deletar categoria</h1>
-            <p className='text-center font-semibold mb-8 text-gray-500'>
-                Você tem certeza de que deseja apagar a categoria a seguir?</p>
-            <div className='flex flex-col rounded-2xl overflow-hidden justify-between bg-gray-200'>
-                <header 
-                    className='py-2 px-6 bg-blue-950 text-white font-bold text-2xl text-center'>
-                    Categoria
-                </header>
-                <p className='p-8 text-2xl h-full text-gray-700 font-medium'>{categoria.descricao}</p>
-                <div className="flex gap-3 p-2 mb-3">
-                    <button 
-                        className='text-white font-semibold bg-red-700 rounded-3xl
-                    hover:bg-red-900 w-1/2 flex items-center justify-center'
-                        onClick={retornar}>
-                        Não
-                    </button>
-                    <button 
-                        className='w-1/2 text-white font-semibold bg-blue-500 rounded-3xl
-                    hover:bg-blue-900 flex items-center justify-center py-2'
-                                   onClick={deletarCategoria}>
 
-                        { isLoading ? 
+        <div className="w-full bg-gray-900 h-screen flex flex-col p-20 items-center  ">
+            <h1 className='text-4xl text-center pd-4 pt-3 font-medium mb-2 text-white'>Deletar categoria</h1>
+            <p className='text-center font-semibold  text-gray-400 mb-20'>
+                Você tem certeza de que deseja apagar a categoria a seguir?</p>
+
+             <div className="group flex-none max-w-3xl mx-auto backdrop-blur-md flex rounded-2xl overflow-hidden justify-between items-center bg-gray-700
+                transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border shadow-emerald-500/20 border-white pr-4">
+
+  <div className="relative bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] w-28 flex justify-center items-center h-full">
+    
+    
+    <div className="absolute w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+    
+    <ShieldCheckIcon size={80} color="#1c834c" className="relative z-10 drop-shadow-md" />
+  </div>
+
+  <div className=" w-full flex flex-col flex-wrap">
+    <div className='pl-6 mt-2'>
+    <p className="text-3xl text-emerald-500  font-medium leading-relaxed">
+      {categoria.nomeCategoria}
+    </p>
+
+    <p className="text-xl text-gray-300 leading-relaxed">
+      {categoria.descricao}
+    </p>
+</div>
+    <div className="flex gap-3 p-3 mb-3 mx-3 w-full">
+        <button onClick={retornar}
+          className="w-full text-white font-semibold bg-red-700 rounded-2xl
+                     hover:bg-red-800 hover:scale-[1.03] active:scale-95
+                     transition-all duration-200 flex items-center justify-center py-2 shadow-md"
+        >
+          Cancelar
+        </button>
+    
+        <button onClick={deletarCategoria}
+          className="w-full text-white font-semibold bg-blue-500 rounded-2xl
+                     hover:bg-blue-700 hover:scale-[1.03] active:scale-95
+                     transition-all duration-200 flex items-center justify-center py-2 shadow-md"
+        >
+           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 
                                 size={24}
@@ -112,10 +132,13 @@ function DeletarCategoria() {
                             <span>Sim</span>
                         }
 
-                    </button>
-                </div>
-            </div>
-        </div>
+        </button>
+      
+
+    </div>
+  </div>
+</div>
+</div>
     )
 }
 export default DeletarCategoria;

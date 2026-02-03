@@ -83,7 +83,7 @@ function FormSeguro() {
         })
     }, [categoria])
 
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    function atualizarEstado(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         setSeguro({
             ...seguro,
             [e.target.name]: e.target.value,
@@ -142,13 +142,9 @@ function FormSeguro() {
     return (
 
             <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
-      style={{
-        backgroundImage:
-          "url('/fundo3.jpg')",
-      }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-900"
     >
-      <div className="absolute inset-0 bg-black/40" />
+    
             <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
             <h1 className="text-3xl font-semibold mb-2">
                  {id !== undefined ? 'Editar Seguro' : 'Cadastrar Seguro'}
@@ -163,23 +159,28 @@ function FormSeguro() {
                         placeholder="Nome do Seguro"
                         name="nomeSeguro"
                         required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.nomeSeguro}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                <div className="relative mb-4">
-                    <NotepadIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
-                    <input
-                        type="text"
-                        placeholder="Descricao"
-                        name="descricao"
-                        required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
-                        value={seguro.descricao}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
-                </div>
+                            <div className="relative mb-4">
+                        <NotepadIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                        
+                        <textarea
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Descreva o que essa categoria cobre..."
+                            value={seguro.descricao}
+                            onChange={atualizarEstado}
+                            rows={4}
+                            required
+                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                                        transition-all duration-300"
+                            />
+                        </div>
                 <div className="relative mb-4">
                     <ShieldCheckIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
@@ -187,7 +188,9 @@ function FormSeguro() {
                         placeholder="Cobertura"
                         name="cobertura"
                         required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.cobertura}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -199,7 +202,9 @@ function FormSeguro() {
                         placeholder="Valor do Seguro (R$)"
                         name="valorSeguro"
                         required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.valorSeguro}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -211,7 +216,9 @@ function FormSeguro() {
                         placeholder="Ano do Dispositivo"
                         name="anoDispositivo"
                         required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.anoDispositivo}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}                       
                     />
@@ -223,14 +230,18 @@ function FormSeguro() {
                         placeholder="Data da Contratação"
                         name="dataContratacao"
                         required
-                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.dataContratacao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <div className="relative mb-4">
                     <ListIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
-                    <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400' 
+                    <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300' 
                     onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
                     >
                     <option value="" selected disabled>Selecione uma Categoria</option>
@@ -246,8 +257,8 @@ function FormSeguro() {
                 <button 
                     type='submit' 
                     className="w-full py-3 rounded-xl font-semibold text-white transition
-                    'bg-gradient-to-r' from-lime-500 to-emerald-700
-                    'hover:bg-gradient-to-br' hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
+                    bg-gradient-to-r from-emerald-400 to-emerald-900
+                    hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
                     //hover:bg-gradient-to-br from-[#D1D5DB] to-[#6B7280]
                                disabled={carregandoCategoria}
                 >
