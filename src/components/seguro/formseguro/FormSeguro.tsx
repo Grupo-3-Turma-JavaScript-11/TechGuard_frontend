@@ -101,7 +101,7 @@ function FormSeguro() {
 
         if (id !== undefined) {
             try {
-                await atualizar(`/seguros/${seguro.id}`, seguro, setSeguro, {
+                await atualizar(`/seguros/`, seguro, setSeguro, {
                 headers: { Authorization: token }
             });
 

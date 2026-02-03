@@ -12,6 +12,6 @@ export default interface Seguro {
   valorSeguro: number
   anoDispositivo: number  
   dataContratacao: string
-  categoria: Categoria
-  usuario: Usuario[]
+  categoria: Categoria | null;
+  usuario: Usuario | null 
 }

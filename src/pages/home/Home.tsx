@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { 
   Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, 
-  DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, 
+  DeviceTabletCameraIcon, 
   CaretLeft, CaretRight, Plus 
 } from "@phosphor-icons/react";
 
@@ -10,6 +10,8 @@ import { CoberturaCard } from '../../components/cardshome/coberturacard/Cobertur
 import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/EcossistemaCard';
 import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
 import LogoIcon from '../../assets/img/logoicon.png';
+import Carrosel from '../../components/animacao/Carrosel';
+import { useNavigate } from 'react-router-dom';
 
 // Constantes (Mantidas fora do componente para melhor performance)
 const slides = [
@@ -51,13 +53,14 @@ function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [rotateY, setRotateY] = useState(0);
+  const navigate = useNavigate();
 
   // Lógica do Escudo Interativo
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left; // posição x real em pixels    
     // Subtraímos 0.5 para ele saber se o mouse está à esquerda ou direita do centro
-    const yRotation = (x / rect.width - 0.5) * 300; 
+    const yRotation = (x / rect.width - 0.5) * 300;
 
     setRotateY(yRotation);
   };
@@ -92,7 +95,7 @@ function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [activeSlide]);
@@ -102,7 +105,7 @@ function Home() {
 
       {/* HEADER / CARROSSEL */}
       <header className="relative h-[600px] bg-gray-900 overflow-hidden group">
-        <div 
+        <div
           ref={scrollRef}
           className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth h-full hide-scrollbar pointer-events-none md:pointer-events-auto"
         >
@@ -113,27 +116,27 @@ function Home() {
 
               <div className="absolute inset-0 flex flex-col justify-center items-center px-6">
                 <div className="bg-slate-900/60 backdrop-blur-md p-8 md:p-12 rounded-[32px] border border-white/10 shadow-2xl max-w-3xl w-full text-center">
-                  
+
                   <h1 className="flex items-center justify-center gap-6 text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-2">
                     <div className="flex">
                       <span className="text-[#10B981]">TECH</span>
                       <span className="text-white">GUARD</span>
                     </div>
 
-                    <div 
+                    <div
                       onMouseMove={handleMouseMove}
                       onMouseLeave={handleMouseLeave}
                       className="inline-block"
                     >
-                      <img 
-                        src={LogoIcon} 
-                        alt="TechGuard Logo" 
+                      <img
+                        src={LogoIcon}
+                        alt="TechGuard Logo"
                         style={{
                           transform: `perspective(2000px) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
                           transition: 'transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)',
                           willChange: 'transform'
                         }}
-                        className="w-24 h-24 md:w-28 md:h-28 object-contain drop-shadow-[0_0_10px_rgba(16,185,129,0.2)]" 
+                        className="w-24 h-24 md:w-28 md:h-28 object-contain drop-shadow-[0_0_10px_rgba(16,185,129,0.2)]"
                       />
                     </div>
                   </h1>
@@ -143,12 +146,23 @@ function Home() {
                   </p>
 
                   <div className="h-1 w-12 bg-[#10B981] mx-auto mb-6 rounded-full opacity-80"></div>
-                  
+
                   <h2 className="text-lg md:text-xl font-medium text-gray-100 leading-relaxed mb-8">
                     {slide.sub}
                   </h2>
 
-                  <button className="bg-[#10B981] text-white px-8 py-3.5 rounded-full font-black text-base hover:bg-[#059669] transition-all shadow-xl hover:scale-105 active:scale-95">
+                  <button className="bg-[#10B981] text-white px-8 py-3.5 rounded-full font-black text-base hover:bg-[#059669] transition-all shadow-xl hover:scale-105 active:scale-95"
+                    onClick={() => {
+                      const dadosDoPlano = {
+                        nomeSeguro: "Smart Pro",
+                        valorSeguro: 34.90,
+                        descricao: "Roubo, Furto e Quebra de Tela",
+                        cobertura: "Nacional Completa",
+                        categoria: null
+                      };
+                      navigate('/contratar', { state: dadosDoPlano });
+                    }}
+                  >
                     Contratar Agora
                   </button>
                 </div>
@@ -158,13 +172,13 @@ function Home() {
         </div>
 
         {/* Setas de Controlo */}
-        <button 
+        <button
           onClick={handlePrev}
           className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20"
         >
           <CaretLeft size={32} />
         </button>
-        <button 
+        <button
           onClick={handleNext}
           className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity z-20"
         >
@@ -183,17 +197,17 @@ function Home() {
             </button>
           ))}
         </div>
-      </header>
+      </header >
 
       {/* SEÇÃO DE COBERTURAS */}
-      <section id="coberturas" className="py-20 bg-gray-800 w-full overflow-hidden text-white">
+      < section id="coberturas" className="py-20 bg-gray-800 w-full overflow-hidden text-white" >
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-emerald-500">
-            O que nosso seguro oferece:
+            O que protegemos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-gray-900">
             {coberturas.map((item, index) => (
-              <CoberturaCard 
+              <CoberturaCard
                 key={index}
                 title={item.title}
                 desc={item.desc}
@@ -202,15 +216,15 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* DIVISOR */}
-      <div className="bg-gray-800 w-full py-2">
+      < div className="bg-gray-800 w-full py-2" >
         <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
-      </div>
+      </div >
 
       {/* ECOSSISTEMA DIGITAL */}
-      <section className="py-20 bg-gray-800 text-white">
+      < section className="py-20 bg-gray-800 text-white" >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between mb-12">
             <div className="max-w-xl text-center md:text-left">
@@ -228,9 +242,9 @@ function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900 mb-30">
             {ecossistema.map((item, index) => (
-              <EcossistemaCard 
+              <EcossistemaCard
                 key={index}
                 title={item.title}
                 sub={item.sub}
@@ -238,24 +252,18 @@ function Home() {
               />
             ))}
           </div>
-
-          <div className="mt-16 flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <AppleLogo size={40} weight="fill" />
-            <AndroidLogo size={40} weight="fill" />
-            <WindowsLogo size={40} weight="fill" />
-            <span className="font-bold text-2xl italic font-serif underline decoration-[#D4AF37] underline-offset-8">SAMSUNG</span>
-            <span className="font-bold text-2xl italic font-sans">DELL</span>
-          </div>
         </div>
       </section>
-
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px -m-10 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent">
+        <div className=' text-white -m-55'>
+            <Carrosel />
+          </div></div>
       </div>
 
       {/* PLANOS */}
-      <section id="planos" className="py-20 bg-gray-800">
+      < section id="planos" className="py-20 bg-gray-800" >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-emerald-500 mb-4">Planos que cabem no seu bolso</h2>
@@ -270,7 +278,18 @@ function Home() {
                 <li className="flex items-center text-slate-600"><i className="fas fa-check text-emerald-500 mr-2"></i> Roubo e Furto Qualificado</li>
                 <li className="flex items-center text-gray-400"><i className="fas fa-times mr-2"></i> Danos por Líquidos</li>
               </ul>
-              <button className="w-full border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-bold hover:bg-emerald-50 transition">Escolher Essencial</button>
+              <button className="w-full border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-bold hover:bg-emerald-50 transition"
+                onClick={() => {
+                  const dadosDoPlano = {
+                    nomeSeguro: "Smart Pro",
+                    valorSeguro: 34.90,
+                    descricao: "Roubo, Furto e Quebra de Tela",
+                    cobertura: "Nacional Completa",
+                    categoria: null
+                  };
+                  navigate('/contratar', { state: dadosDoPlano });
+                }}>
+                Escolher Essencial</button>
             </div>
 
             <div className="bg-white p-8 rounded-3xl shadow-xl border-4 border-emerald-600 transform scale-105 relative hover:-translate-y-4 transition-all duration-300">
@@ -282,7 +301,19 @@ function Home() {
                 <li className="flex items-center text-slate-700"><i className="fas fa-check text-emerald-500 mr-2"></i> Quebra de Tela</li>
                 <li className="flex items-center text-slate-700"><i className="fas fa-check text-emerald-500 mr-2"></i> Danos por Líquidos</li>
               </ul>
-              <button className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold hover:bg-emerald-700 transition shadow-lg">Proteger Agora</button>
+              <button className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold hover:bg-emerald-700 transition shadow-lg"
+                onClick={() => {
+                  const dadosDoPlano = {
+                    nomeSeguro: "Smart Pro",
+                    valorSeguro: 34.90,
+                    descricao: "Roubo, Furto e Quebra de Tela",
+                    cobertura: "Nacional Completa",
+                    categoria: null
+                  };
+                  navigate('/contratar', { state: dadosDoPlano });
+                }}>
+
+                Proteger Agora</button>
             </div>
 
             <div className="bg-white p-8 rounded-3xl shadow-sm hover:-translate-y-4 transition-all duration-300">
@@ -293,7 +324,17 @@ function Home() {
                 <li className="flex items-center text-slate-600"><i className="fas fa-check text-emerald-500 mr-2"></i> Tudo do plano Smart Pro</li>
                 <li className="flex items-center text-slate-600"><i className="fas fa-check text-emerald-500 mr-2"></i> Aparelho Reserva</li>
               </ul>
-              <button className="w-full border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-bold transition-all duration-300 hover:bg-amber-500 hover:text-slate-900 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] relative overflow-hidden group">
+              <button className="w-full border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-bold transition-all duration-300 hover:bg-amber-500 hover:text-slate-900 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] relative overflow-hidden group"
+                onClick={() => {
+                  const dadosDoPlano = {
+                    nomeSeguro: "Smart Pro",
+                    valorSeguro: 34.90,
+                    descricao: "Roubo, Furto e Quebra de Tela",
+                    cobertura: "Nacional Completa",
+                    categoria: null
+                  };
+                  navigate('/contratar', { state: dadosDoPlano });
+                }}>
                 <span className="absolute top-0 -left-full w-full h-full 'bg-gradient-to-r' from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-full"></span>
                 <span className="relative flex items-center justify-center">
                   <i className="fas fa-crown mr-2 text-xs"></i> Escolher Global
@@ -302,15 +343,15 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* DIVISOR */}
-      <div className="bg-gray-800 w-full py-2">
+      < div className="bg-gray-800 w-full py-2" >
         <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
-      </div>
+      </div >
 
       {/* CLIENTES */}
-      <section className="py-20 bg-gray-800 w-full text-white">
+      < section className="py-20 bg-gray-800 w-full text-white" >
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-black text-[#10B981] uppercase tracking-widest">
@@ -324,15 +365,15 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* DIVISOR */}
-      <div className="bg-gray-800 w-full py-2">
+      < div className="bg-gray-800 w-full py-2" >
         <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
-      </div>
+      </div >
 
       {/* FAQ */}
-      <section id="faq" className="py-20 bg-gray-800 text-white">
+      < section id="faq" className="py-20 bg-gray-800 text-white" >
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-black text-center mb-12">Dúvidas Frequentes</h2>
           <div className="space-y-4">
@@ -351,9 +392,9 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
-    </div>
+    </div >
   );
 }
 
