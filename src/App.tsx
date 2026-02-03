@@ -16,6 +16,10 @@ import DeletarSeguro from './components/seguro/deletarseguro/DeletarSeguro';
 import Home from './pages/home/Home'
 import Sobre from './pages/sobre/Sobre'
 import { PrivateRoute } from './components/auth/PrivateRoute'
+import Perfil from './pages/perfil/Perfil';
+import DeletarPerfil from './pages/perfil/DeletarPerfil';
+import EditarPerfil from './pages/perfil/EditarPerfil';
+
 
 function App() {
 
@@ -49,9 +53,12 @@ function App() {
 							<Route path="/cadastrarseguro" element={<FormSeguro />} />
 							<Route path="/editarseguro/:id" element={<FormSeguro />} />
 							<Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
-							{/* Gestão global */}
-							{/* <Route path="/admin/seguros" element={<ListaSegurosAdmin />} /> */}
-						</Route> {/* <--- E ESQUECEU ESSE AQUI TAMBÉM! */}
+							<Route path="/sobrenos" element={<Sobre />} />
+							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/editarperfil" element={<EditarPerfil />} />
+							<Route path="/deletarperfil" element={<DeletarPerfil />} />
+
+						</Route>	
 					</Routes>
 					<Footer />
 				</BrowserRouter>

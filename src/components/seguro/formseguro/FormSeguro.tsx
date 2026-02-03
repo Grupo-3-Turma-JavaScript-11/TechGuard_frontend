@@ -18,7 +18,7 @@ function FormSeguro() {
 
     const [categoria, setCategoria] = useState<Categoria>({id: 0, nomeCategoria: "", descricao: "", })
     
-    const [seguro, setSeguro] = useState<Seguro>({ } as Seguro)
+    const [seguro, setSeguro] = useState<Seguro>({} as Seguro)
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
@@ -158,7 +158,7 @@ function FormSeguro() {
                     <ShieldIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="text"
-                        placeholder="Nome do Seguro"
+                        placeholder="Nome do Cliente"
                         name="nomeSeguro"
                         required
                         className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
@@ -179,7 +179,7 @@ function FormSeguro() {
                             onChange={atualizarEstado}
                             rows={4}
                             required
-                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
                                         transition-all duration-300"
                             />
                         </div>
@@ -202,19 +202,19 @@ function FormSeguro() {
                     <input
                         type="number"
                         placeholder="Valor do Seguro (R$)"
-                        name="valor"
+                        name="valorSeguro"
                         required
                         className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
                         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
                         transition-all duration-300"
-                        value={seguro.valor}
+                        value={seguro.valorSeguro}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <div className="relative mb-4">
                     <CalendarIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
-                        type="text"
+                        type="number"
                         placeholder="Ano do Dispositivo"
                         name="anoDispositivo"
                         required
@@ -241,7 +241,7 @@ function FormSeguro() {
                 </div>
                 <div className="relative mb-4">
                     <ListIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
-                    <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                    <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40  resize-none placeholder:text-black
                         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
                         transition-all duration-300' 
                     onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
@@ -261,8 +261,7 @@ function FormSeguro() {
                     className="w-full py-3 rounded-xl font-semibold text-white transition
                     bg-gradient-to-r from-emerald-400 to-emerald-900
                     hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
-                    //hover:bg-gradient-to-br from-[#D1D5DB] to-[#6B7280]
-                               disabled={carregandoCategoria}
+                    disabled={carregandoCategoria}
                 >
                     { isLoading ? 
                             <ClipLoader
