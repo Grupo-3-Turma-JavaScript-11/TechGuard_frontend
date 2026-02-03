@@ -33,7 +33,7 @@ function App() {
 					<Navbar />
 					<Routes>
 						{/* ROTAS PÚBLICAS */}
-						<Route path="/" element={<Login />} />
+						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/cadastro" element={<Cadastro />} />
 						<Route path="/home" element={<Home />} />
@@ -43,6 +43,10 @@ function App() {
 						<Route element={<PrivateRoute rolesPermitidas={['cliente', 'corretor']} />}>
 							<Route path="/meus-seguros" element={<ListaSegurosCliente />} />
 							<Route path="/contratar" element={<FormContratacao />} />
+							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/editarperfil" element={<EditarPerfil />} />
+							<Route path="/deletarperfil" element={<DeletarPerfil />} />
+
 						</Route>
 
 						{/* GRUPO 2: EXCLUSIVO CORRETOR (ADMIN)                       */}
@@ -56,10 +60,7 @@ function App() {
 							<Route path="/editarseguro/:id" element={<FormSeguro />} />
 							<Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
 							<Route path="/sobrenos" element={<Sobre />} />
-							<Route path="/perfil" element={<Perfil />} />
-							<Route path="/editarperfil" element={<EditarPerfil />} />
-							<Route path="/deletarperfil" element={<DeletarPerfil />} />
-
+							
 						</Route>
 					</Routes>
 					<Footer />

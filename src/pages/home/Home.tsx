@@ -11,7 +11,7 @@ import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/Ecos
 import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
 import LogoIcon from '../../assets/img/logoicon.png';
 import Carrosel from '../../components/animacao/Carrosel';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Constantes (Mantidas fora do componente para melhor performance)
 const slides = [
@@ -90,7 +90,24 @@ function Home() {
     const prevIndex = activeSlide === 0 ? slides.length - 1 : activeSlide - 1;
     scrollToSlide(prevIndex);
   };
+const location = useLocation(); // <--- OBRIGATÓRIO PARA LER A URL
 
+  // --- O CÓDIGO DO SCROLL ---
+  useEffect(() => {
+    // Se tiver um #hash na URL (ex: #planos)
+    if (location.hash) {
+      const id = location.hash.replace('#', ''); // Remove o #
+      const elemento = document.getElementById(id);
+      
+      if (elemento) {
+        // Pequeno delay para garantir que a página carregou
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]); // Executa sempre que a URL mudar
+  
   // Lógica do Autoplay
   useEffect(() => {
     const interval = setInterval(() => {

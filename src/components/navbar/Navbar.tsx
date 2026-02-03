@@ -24,7 +24,10 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-3 text-2xl font-black text-emerald-600 tracking-tighter">
+        <Link to="/home" className="flex items-center gap-3 text-2xl font-black text-emerald-600 tracking-tighter"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}>
           <img
             src={LogoIcon}
             alt="TechGuard Logo"
@@ -82,8 +85,8 @@ function Navbar() {
 
           {/* Links Comuns */}
           <Link to="/sobrenos" className="text-sm font-bold text-gray-200 uppercase tracking-wide hover:text-emerald-400 transition-all duration-300 hover:scale-105">Sobre Nós</Link>
-          <Link to="/planos" className="text-sm font-bold text-gray-200 uppercase tracking-wide hover:text-emerald-400 transition-all duration-300 hover:scale-105">Planos</Link>
-          <Link to="/faq" className="text-sm font-bold text-gray-200 uppercase tracking-wide hover:text-emerald-400 transition-all duration-300 hover:scale-105">Dúvidas</Link>
+          <Link to="/home#planos" className="text-sm font-bold text-gray-200 uppercase tracking-wide hover:text-emerald-400 transition-all duration-300 hover:scale-105">Planos</Link>
+          <Link to="/home#faq" className="text-sm font-bold text-gray-200 uppercase tracking-wide hover:text-emerald-400 transition-all duration-300 hover:scale-105">Dúvidas</Link>
 
           {/* Sinistro (Vermelho Neon) */}
           {usuario.tipo !== 'corretor' && (
