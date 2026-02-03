@@ -15,6 +15,10 @@ import ListaSeguros from './components/seguro/listaseguros/ListaSeguros';
 import FormSeguro from './components/seguro/formseguro/FormSeguro';
 import DeletarSeguro from './components/seguro/deletarseguro/DeletarSeguro';
 import Sobre from './pages/sobre/Sobre';
+import Perfil from './pages/perfil/Perfil';
+import DeletarPerfil from './pages/perfil/DeletarPerfil';
+import EditarPerfil from './pages/perfil/EditarPerfil';
+
 
 function App() {
 
@@ -38,7 +42,12 @@ return(
 							<Route path="/editarseguro/:id" element={<FormSeguro />} />
 							<Route path="/deletarseguro/:id" element={<DeletarSeguro />} />
 							<Route path="/sobrenos" element={<Sobre />} />
-										</Routes>
+							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/editarperfil" element={<EditarPerfil />} />
+							<Route path="/deletarperfil" element={<DeletarPerfil />} />
+
+							
+						</Routes>
 			
 					<Footer />
 				</BrowserRouter>
