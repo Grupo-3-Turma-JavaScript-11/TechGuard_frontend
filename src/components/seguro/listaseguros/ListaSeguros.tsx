@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import type Seguro from "../../../models/seguro";
 import { buscar } from "../../../service/Service";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { PencilIcon, TrashIcon } from "@phosphor-icons/react";
 
 function ListaSeguros() {
 
@@ -15,7 +16,7 @@ function ListaSeguros() {
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
-    
+
     const formatarMoeda = (valor: number) => {
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
