@@ -144,8 +144,7 @@ function FormSeguro() {
             <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-900"
     >
-        <div className="absolute w-72 h-72 bg-emerald-500/20 blur-3xl rounded-full -top-10 -left-10 animate-pulse"></div>
-  <div className="absolute w-72 h-72 bg-emerald-400/10 blur-3xl rounded-full bottom-0 right-0 animate-pulse"></div>
+    
             <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
             <h1 className="text-3xl font-semibold mb-2">
                  {id !== undefined ? 'Editar Seguro' : 'Cadastrar Seguro'}
