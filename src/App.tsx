@@ -19,6 +19,8 @@ import { PrivateRoute } from './components/auth/PrivateRoute'
 import Perfil from './pages/perfil/Perfil';
 import DeletarPerfil from './pages/perfil/DeletarPerfil';
 import EditarPerfil from './pages/perfil/EditarPerfil';
+import FormContratacao from './components/cliente/formcontacao/FormContratacao'
+import ListaSegurosCliente from './components/cliente/listasegurosclientes/ListaSegurosClientes'
 
 
 function App() {
@@ -39,8 +41,8 @@ function App() {
 
 						{/* GRUPO 1: CLIENTE E CORRETOR                               */}
 						<Route element={<PrivateRoute rolesPermitidas={['cliente', 'corretor']} />}>
-							{/* <Route path="/meus-seguros" element={<ListaSegurosCliente />} />
-							<Route path="/contratar/:id" element={<FormContratacao />} /> */}
+							<Route path="/meus-seguros" element={<ListaSegurosCliente />} />
+							<Route path="/contratar" element={<FormContratacao />} />
 						</Route>
 
 						{/* GRUPO 2: EXCLUSIVO CORRETOR (ADMIN)                       */}
@@ -58,7 +60,7 @@ function App() {
 							<Route path="/editarperfil" element={<EditarPerfil />} />
 							<Route path="/deletarperfil" element={<DeletarPerfil />} />
 
-						</Route>	
+						</Route>
 					</Routes>
 					<Footer />
 				</BrowserRouter>

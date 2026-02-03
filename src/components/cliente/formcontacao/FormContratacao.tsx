@@ -1,148 +1,154 @@
-import { useContext, useEffect, useState, type FormEvent, type  ChangeEvent } from "react";
+import {  useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { cadastrar } from "../../../service/Service"; // Ajuste o caminho do Service!
+
+import { buscar, cadastrar } from "../../../service/Service";
 import { ToastAlert } from "../../../utils/ToastAlert";
 import type Seguro from "../../../models/seguro";
+import type Categoria from "../../../models/categoria";
 
 function FormContratacao() {
   const navigate = useNavigate();
-  const { usuario } = useContext(AuthContext);
+  const { usuario, handleLogout } = useContext(AuthContext);
   const location = useLocation();
-  
-  // Pegamos o plano que veio pelo botão "Contratar" da Home
-  const planoEscolhido = location.state as Seguro; 
+  const planoEscolhido = location.state as Seguro;
 
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+
+  // Estado do Formulário
   const [seguro, setSeguro] = useState<Seguro>({
     id: 0,
-    nomeSeguro: usuario.nome,
+    nomeSeguro: usuario.nome || "", 
     descricao: "",
     cobertura: "",
     valorSeguro: 0,
-    anoDispositivo: 2024,
-    dataContratacao: new Date().toISOString().split('T')[0],
-    categoria: null, 
+    anoDispositivo: 0,
+    dataContratacao: new Date().toISOString().split('T')[0], // Hoje
+    categoria: null,
     usuario: null
   });
 
   useEffect(() => {
-    // Se veio um plano da Home, preenchemos os campos fixos
-    if (planoEscolhido) {
-      setSeguro({
-        ...seguro,
-        descricao: planoEscolhido.descricao, // Fixo
-        cobertura: planoEscolhido.cobertura, // Fixo
-        valorSeguro: planoEscolhido.valorSeguro, // Fixo
-        categoria: planoEscolhido.categoria, // Fixo
-        nomeSeguro: usuario.nome // Garante que é o nome do cliente
-      });
+    if (usuario.token === "") {
+        ToastAlert("Você precisa estar logado!", "info");
+        navigate("/login");
+        return;
     }
-  }, [planoEscolhido, usuario.nome]);
 
-  function atualizarEstado(e: React.ChangeEvent<HTMLInputElement>) {
-    setSeguro({
-      ...seguro,
-      [e.target.name]: e.target.value,
+
+    buscar('/categorias', setCategorias, {
+        headers: { Authorization: usuario.token }
     });
+
+    if (planoEscolhido) {
+      setSeguro(prev => ({
+        ...prev,
+        descricao: planoEscolhido.descricao,
+        cobertura: planoEscolhido.cobertura,
+        valorSeguro: planoEscolhido.valorSeguro,
+        categoria: planoEscolhido.categoria, // Tenta pegar a categoria do plano, se tiver
+      }));
+    }
+  }, [usuario.token, planoEscolhido]);
+
+  // 2. Função para atualizar os inputs (Convertendo números)
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    // Se for ano ou valor, força virar Número
+    const valorTratado = (name === "anoDispositivo" || name === "valorSeguro") ? Number(value) : value;
+
+    setSeguro({ ...seguro, [name]: valorTratado });
   }
 
+  // 3. Função para selecionar a Categoria no Dropdown
+  function handleCategoriaChange(e: ChangeEvent<HTMLSelectElement>) {
+    const idSelecionado = Number(e.target.value);
+    const catEncontrada = categorias.find(c => c.id === idSelecionado);
+    setSeguro({ ...seguro, categoria: catEncontrada || null });
+  }
+
+  // 4. Enviar para o Backend (O Pulo do Gato)
   async function gerarContrato(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    // Montamos o objeto final para enviar pro Back
-    // O Back vai esperar o ID do usuario para vincular
+    // Validação Manual
+    if (!seguro.categoria) {
+        ToastAlert("Selecione o tipo do dispositivo!", "erro");
+        return;
+    }
+
+    // Monta o objeto Limpo
     const contratoFinal = {
-        ...seguro,
-        usuario: { id: usuario.id } // VINCULO CRUCIAL
+        nomeSeguro: seguro.nomeSeguro,
+        descricao: seguro.descricao,
+        cobertura: seguro.cobertura,
+        valorSeguro: Number(seguro.valorSeguro),
+        anoDispositivo: Number(seguro.anoDispositivo),
+        dataContratacao: seguro.dataContratacao,
+        usuario: { id: usuario.id }, // VINCULA AO USUÁRIO LOGADO
+        categoria: { id: seguro.categoria.id } // VINCULA A CATEGORIA
     };
 
     try {
       await cadastrar(`/seguros`, contratoFinal, setSeguro, {
-        Authorization: usuario.token,
+        headers: { Authorization: usuario.token } // HEADER OBRIGATÓRIO
       });
+      
       ToastAlert("Seguro Contratado com Sucesso!", "sucesso");
-      navigate("/meus-seguros");
-    } catch (error) {
-      ToastAlert("Erro ao contratar seguro.", "erro");
+      navigate("/meus-seguros"); // Redireciona para a lista
+    } catch (error: any) {
+      if (error.toString().includes('401')) {
+          handleLogout();
+      } else {
+          console.log(error); // Ajuda a debugar
+          ToastAlert("Erro ao contratar. Verifique os dados.", "erro");
+      }
     }
   }
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto my-8">
-      <h1 className="text-4xl font-bold text-emerald-600 mb-8 uppercase">
-        Finalizar Contratação
-      </h1>
-
+      <h1 className="text-4xl font-bold text-emerald-600 mb-8">FINALIZAR CONTRATAÇÃO</h1>
+      
       <form onSubmit={gerarContrato} className="w-1/2 flex flex-col gap-4">
-        
-        {/* === CAMPOS EDITÁVEIS PELO CLIENTE === */}
-        
+        {/* Input Nome */}
         <div className="flex flex-col gap-2">
-          <label className="font-bold text-gray-700">Titular do Seguro (Você)</label>
-          <input
-            type="text"
-            name="nomeSeguro"
-            value={seguro.nomeSeguro}
-            onChange={atualizarEstado}
-            className="border-2 border-emerald-500 rounded p-2 bg-white"
-            required
-          />
+            <label className="font-bold text-gray-700">Titular</label>
+            <input type="text" name="nomeSeguro" value={seguro.nomeSeguro} onChange={atualizarEstado} className="border p-2 rounded" required />
         </div>
 
+        {/* Select Categoria (Importante!) */}
+        <div className="flex flex-col gap-2">
+            <label className="font-bold text-gray-700">Tipo de Dispositivo</label>
+            <select name="categoria" onChange={handleCategoriaChange} className="border p-2 rounded" required defaultValue="">
+                <option value="" disabled>Selecione...</option>
+                {categorias.map(cat => (
+                    <option key={cat.id} value={cat.id}>{cat.nomeCategoria}</option>
+                ))}
+            </select>
+        </div>
+
+        {/* Input Ano */}
         <div className="flex flex-col gap-2">
             <label className="font-bold text-gray-700">Ano do Dispositivo</label>
-            <input
-                type="number"
-                name="anoDispositivo"
-                placeholder="Ex: 2023"
-                value={seguro.anoDispositivo}
-                onChange={atualizarEstado}
-                className="border-2 border-emerald-500 rounded p-2"
-                required
-            />
+            <input type="number" name="anoDispositivo" value={seguro.anoDispositivo} onChange={atualizarEstado} className="border p-2 rounded" required />
         </div>
 
+        {/* Input Data */}
         <div className="flex flex-col gap-2">
-            <label className="font-bold text-gray-700">Data de Início</label>
-            <input
-                type="date"
-                name="dataContratacao"
-                value={seguro.dataContratacao}
-                onChange={atualizarEstado}
-                className="border-2 border-emerald-500 rounded p-2"
-                required
-            />
+            <label className="font-bold text-gray-700">Início Vigência</label>
+            <input type="date" name="dataContratacao" value={seguro.dataContratacao} onChange={atualizarEstado} className="border p-2 rounded" required />
         </div>
 
-        {/* === CAMPOS TRAVADOS (READ-ONLY) === */}
-        <div className="p-4 bg-gray-100 rounded-lg border border-gray-300 mt-4">
-            <h3 className="text-lg font-bold text-gray-500 mb-4 border-b pb-2">Detalhes do Plano (Fixo)</h3>
-            
-            <div className="grid grid-cols-2 gap-4 opacity-70">
-                <div>
-                    <label className="text-sm font-bold text-gray-500">Valor Mensal</label>
-                    <input 
-                        value={new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(seguro.valorSeguro)}
-                        disabled 
-                        className="w-full bg-transparent font-bold text-emerald-600 text-xl"
-                    />
-                </div>
-                <div>
-                    <label className="text-sm font-bold text-gray-500">Cobertura</label>
-                    <input value={seguro.cobertura} disabled className="w-full bg-transparent font-bold" />
-                </div>
-                <div className="col-span-2">
-                    <label className="text-sm font-bold text-gray-500">Descrição</label>
-                    <input value={seguro.descricao} disabled className="w-full bg-transparent" />
-                </div>
-            </div>
+        {/* Resumo Fixo */}
+        <div className="bg-gray-100 p-4 rounded">
+            <h3 className="font-bold">Resumo do Plano</h3>
+            <p>Valor: R$ {seguro.valorSeguro}</p>
+            <p>Cobertura: {seguro.cobertura}</p>
         </div>
 
-        <button
-          type="submit"
-          className="rounded text-slate-100 bg-emerald-600 hover:bg-emerald-700 w-1/2 py-3 mx-auto flex justify-center font-bold text-xl mt-4 shadow-lg transition-all hover:scale-105"
-        >
-          Confirmar Contratação
+        <button type="submit" className="bg-emerald-600 text-white font-bold py-3 rounded hover:bg-emerald-700">
+            Confirmar Contratação
         </button>
       </form>
     </div>

@@ -5,6 +5,7 @@ import type Seguro from "../../../models/seguro";
 import { buscar } from "../../../service/Service";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { PencilIcon, TrashIcon } from "@phosphor-icons/react";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function ListaSeguros() {
 
@@ -40,25 +41,31 @@ function ListaSeguros() {
     }, [token])
 
     useEffect(() => {
-        buscarSeguro()
+        buscarMeusSeguros()
     }, [seguro.length])
 
-    async function buscarSeguro() {
-        try {
+    async function buscarMeusSeguros() {
+    try {
+      await buscar("/seguros", (dados: Seguro[]) => {
+        // --- MOMENTO DEBUG (Olhe o Console F12 se der erro) ---
+        console.log("Todos os seguros do banco:", dados);
+        console.log("Meu ID de usuário:", usuario.id);
 
-            setIsLoading(true)
-
-            await buscar('/seguros', setSeguro, {
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('401')) {
-                handleLogout()
-            }
-        } finally {
-            setIsLoading(false)
-        }
+        // --- A CORREÇÃO MÁGICA ---
+        // 1. Usamos '&&' para garantir que item.usuario existe
+        // 2. Usamos '==' (dois iguais) para ignorar texto vs número
+        const meusSeguros = dados.filter(item => 
+            item.usuario && item.usuario.id == usuario.id
+        );
+        
+        setSeguro(meusSeguros);
+      }, {
+        headers: { Authorization: usuario.token } // Garante o header correto
+      });
+    } catch (error) {
+      ToastAlert("Erro ao buscar seguros", "erro");
     }
+  }
 
     return (
         <>
@@ -120,6 +127,7 @@ function ListaSeguros() {
                                             >
                                                 <td className="px-4 py-3">{seguro.id}</td>
                                                 <td className="px-4 py-3">{seguro.nomeSeguro}</td>
+                                                <td className="px-4 py-3">{seguro.usuario?.nome || "Cliente Desconhecido"}</td>
                                                 <td className="px-4 py-3">{seguro.descricao}</td>
                                                 <td className="px-4 py-3">{seguro.cobertura}</td>
                                                 <td className="px-4 py-3">R$ {formatarMoeda (seguro.valorSeguro)}</td>
