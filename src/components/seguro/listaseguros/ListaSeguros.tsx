@@ -122,7 +122,7 @@ function ListaSeguros() {
                                         <td className="px-4 py-3">{seguro.cobertura}</td>
                                         <td className="px-4 py-3">{seguro.descricao}</td>
                                         <td className="px-4 py-3">R$ {formatarMoeda (seguro.valorSeguro)}</td>
-                                        <td className="px-4 py-3">{seguro.anoDispositivo}</td>
+                                        <td className="px-4 py-3">{Number(seguro.anoDispositivo).toFixed(0)}</td>
                                         <td className="px-4 py-3">{formatarData(seguro.dataContratacao)}</td>
                                         <td className="px-4 py-3">{seguro.categoria?.nomeCategoria}</td>
           
