@@ -18,7 +18,7 @@ function FormSeguro() {
 
     const [categoria, setCategoria] = useState<Categoria>({id: 0, nomeCategoria: "", descricao: "", })
     
-    const [seguro, setSeguro] = useState<Seguro>({ } as Seguro)
+    const [seguro, setSeguro] = useState<Seguro>({} as Seguro)
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
@@ -202,12 +202,12 @@ function FormSeguro() {
                     <input
                         type="number"
                         placeholder="Valor do Seguro (R$)"
-                        name="valor"
+                        name="valorSeguro"
                         required
                         className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
                         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
                         transition-all duration-300"
-                        value={seguro.valor}
+                        value={seguro.valorSeguro}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>

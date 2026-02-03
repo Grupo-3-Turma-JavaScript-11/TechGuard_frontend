@@ -4,6 +4,7 @@ import type Categoria from "../../../models/categoria"
 import { ClipLoader } from "react-spinners"
 import { buscar, deletar } from "../../../service/Service"
 import { AuthContext } from "../../../contexts/AuthContext"
+import { ToastAlert } from "../../../utils/ToastAlert"
 import { ShieldCheckIcon} from "@phosphor-icons/react"
 
 
@@ -40,6 +41,13 @@ function DeletarCategoria() {
         }
     }
 
+    useEffect(() => {
+        if (token === '') {
+            ToastAlert('Você precisa estar logado', 'erro')
+            navigate('/')
+        }
+    }, [token])
+
 
     useEffect(() => {
         if (id !== undefined) {
@@ -52,19 +60,17 @@ function DeletarCategoria() {
 
         try {
             await deletar(`/categorias/${id}`, {
-             headers: {
-                    'Authorization': token
-             }
-            
+                headers: {'Authorization': token}            
             })
 
-            alert('Categoria deletada com sucesso')
+
+            ToastAlert('Categoria deletada com sucesso', 'sucesso')
 
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
             }else {
-                alert('Erro ao deletar a categoria.')
+                ToastAlert('Erro ao deletar a categoria.', 'erro')
             }
         }
 
