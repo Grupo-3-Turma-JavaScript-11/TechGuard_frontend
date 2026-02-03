@@ -20,7 +20,7 @@ function CardSeguro({ seguro }: CardSegurosProps) {
                 <div className='px-2 mb-8 text-white space-y-2 font-medium'>
                     <p>Descrição: {seguro.descricao}</p>
                     <p>Cobertura: {seguro.cobertura}</p>
-                    <p>Valor do Seguro: {seguro.valor}</p>
+                    <p>Valor do Seguro: {seguro.valorSeguro}</p>
                     <p>Ano do Dispositivo: {seguro.anoDispositivo}</p>
                     <p>Data da Contratação: {new Intl.DateTimeFormat("pt-BR", {
                         dateStyle: 'full',
