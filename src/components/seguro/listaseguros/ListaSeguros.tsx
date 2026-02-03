@@ -17,6 +17,19 @@ function ListaSeguros() {
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
+    const formatarMoeda = (valor: number) => {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(valor);
+    };
+
+    const formatarData = (data: string) => {
+        return new Date(data).toLocaleDateString('pt-BR', {
+            timeZone: 'UTC',
+        });
+    };
+
     useEffect(() => {
         if (token === '') {
             alert('Você precisa estar logado!')
@@ -108,9 +121,9 @@ function ListaSeguros() {
                                         <td className="px-4 py-3">{seguro.nomeSeguro}</td>
                                         <td className="px-4 py-3">{seguro.cobertura}</td>
                                         <td className="px-4 py-3">{seguro.descricao}</td>
-                                        <td className="px-4 py-3">R$ {seguro.valorSeguro}</td>
+                                        <td className="px-4 py-3">R$ {formatarMoeda (seguro.valorSeguro)}</td>
                                         <td className="px-4 py-3">{seguro.anoDispositivo}</td>
-                                        <td className="px-4 py-3">{seguro.dataContratacao}</td>
+                                        <td className="px-4 py-3">{formatarData(seguro.dataContratacao)}</td>
                                         <td className="px-4 py-3">{seguro.categoria?.nomeCategoria}</td>
           
                                         <td className="px-4 py-3 flex gap-3 justify-center">
