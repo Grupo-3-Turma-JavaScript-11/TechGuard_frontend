@@ -70,13 +70,13 @@ function ListaSeguros() {
                 </div>
             )}
 
-            <div
+            {/* <div
                 className="min-h-screen flex flex-col items-center bg-cover bg-center relative"
                 style={{
                     backgroundImage:"url('/fundo3.jpg')",
                     }}
-            >
-            <div className="absolute inset-0 bg-black/40" />
+            > */}
+            <div className="w-full bg-gray-900 h-screen flex flex-col p-10 items-center">
 
             <button className=" mt-10 mb-6 self-center rounded-2xl text-xl text-white font-semibold px-8 py-3 bg-emerald-500 hover:bg-emerald-600 transition" onClick={() => navigate('/cadastrarseguro')}>Cadastrar novo Seguro</button>
             
