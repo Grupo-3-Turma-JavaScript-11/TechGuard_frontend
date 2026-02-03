@@ -206,7 +206,7 @@ function Home() {
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
       </div>
 
       {/* ECOSSISTEMA DIGITAL */}
@@ -251,7 +251,7 @@ function Home() {
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
       </div>
 
       {/* PLANOS */}
@@ -294,7 +294,7 @@ function Home() {
                 <li className="flex items-center text-slate-600"><i className="fas fa-check text-emerald-500 mr-2"></i> Aparelho Reserva</li>
               </ul>
               <button className="w-full border-2 border-emerald-600 text-emerald-600 py-3 rounded-xl font-bold transition-all duration-300 hover:bg-amber-500 hover:text-slate-900 hover:border-amber-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] relative overflow-hidden group">
-                <span className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-full"></span>
+                <span className="absolute top-0 -left-full w-full h-full 'bg-gradient-to-r' from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-full"></span>
                 <span className="relative flex items-center justify-center">
                   <i className="fas fa-crown mr-2 text-xs"></i> Escolher Global
                 </span>
@@ -306,7 +306,7 @@ function Home() {
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
       </div>
 
       {/* CLIENTES */}
@@ -328,7 +328,7 @@ function Home() {
 
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
       </div>
 
       {/* FAQ */}

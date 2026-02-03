@@ -6,7 +6,7 @@ import type UsuarioLogin from "../../models/usuarioLogin";
 import { ClipLoader } from "react-spinners";
 
 
-export default function Login() {
+function Login() {
 
     const navigate = useNavigate();
 
@@ -17,9 +17,19 @@ export default function Login() {
 
     useEffect(() => {
         if (usuario.token !== "") {
-            navigate('/')
+            navigate('/home')
         }
     }, [usuario])
+
+    useEffect(() => {
+        if (usuario.token !== "") {
+        if (usuario.tipo === "corretor" || usuario.tipo === "admin") {
+          navigate('/home'); 
+      } else {
+          navigate('/home'); 
+    }
+  }
+}, [usuario, navigate]);
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setUsuarioLogin({
@@ -53,8 +63,8 @@ export default function Login() {
            <UserIcon size={28} color="#2d9a62" className="absolute top-3 left-2 "/>
           <input
             type="text"
-            id="usuario"
-            name="usuario"
+            id="email"
+            name="email"
             placeholder="Email"
             className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 focus:outline-none focus:ring-2 focus:ring-green-400"
             value = {usuarioLogin.email}
@@ -76,7 +86,9 @@ export default function Login() {
           />
         </div>
 
-        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+        <button 
+          type="submit"
+          className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 
@@ -97,3 +109,5 @@ export default function Login() {
     </div>
   )
 }
+
+export default Login

@@ -49,7 +49,7 @@ function ListaSeguros() {
         <>
 
             {isLoading && (
-                <div className="flex justify-center w-full my-8">
+                <div className="flex justify-center w-full my-8 ">
                     <SyncLoader
                         color="#312e81"
                         size={32}
@@ -57,7 +57,11 @@ function ListaSeguros() {
                 </div>
             )}
 
-            <div className="w-full h-screen flex flex-col p-20 items-center ">
+             <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-500">
+                
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
+
             <button className="'bg-gradient-to-r' from-blue-800 to-blue-400 mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarproduto')}>Cadastrar novo Produto</button>
 
             <div className="flex justify-center w-full my-4">
@@ -78,6 +82,7 @@ function ListaSeguros() {
                             }
                     </div>
                 </div>
+            </div>
             </div>
             </div>
         </>
