@@ -116,20 +116,20 @@ function ListaSeguros() {
                                         className="bg-indigo-500 hover:bg-indigo-600 px-3 py-1 rounded-lg"
                                         >
                                         Editar
-                                    </button>
+                                        </button>
 
-                                    <button 
-                                    className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg"
-            >
-              Excluir
-            </button>
-          </td>
-        </tr>
-      ))}
+                                        <button 
+                                        className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg"
+                                        >
+                                        Excluir
+                                        </button>
+                                        </td>
+                                    </tr>
+                                ))}
 
-    </tbody>
-  </table>
-</div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             </div>
