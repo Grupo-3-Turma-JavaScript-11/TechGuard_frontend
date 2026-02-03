@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import type Seguro from "../../../models/seguro";
 import { buscar } from "../../../service/Service";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { PencilIcon, TrashIcon } from "@phosphor-icons/react";
 
 function ListaSeguros() {
 
@@ -66,10 +67,10 @@ function ListaSeguros() {
 
             <button className=" mt-10 mb-6 self-center rounded-2xl text-xl text-white font-semibold px-8 py-3 bg-emerald-500 hover:bg-emerald-600 transition" onClick={() => navigate('/cadastrarseguro')}>Cadastrar novo Seguro</button>
             
-            <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
+            <div className="relative w-[97%] max-w-7xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
 
             <div className="flex justify-center w-full my-4">
-                <div className="container flex flex-col">
+                <div className="container flex flex-col min-w-full ">
 
                     {(!isLoading && seguro.length === 0) && (
                             <span className="text-3xl text-center my-8">
@@ -81,16 +82,17 @@ function ListaSeguros() {
                         <table className="min-w-full border border-white/20 rounded-lg overflow-hidden">
 
                             {/* Cabeçalho */}
-                            <thead className="bg-emerald-600 text-white rounded-xl">
+                            <thead className="bg-emerald-600 text-white rounded-x">
                                 <tr>
                                     <th className="px-4 py-3 text-left">ID</th>
-                                    <th className="px-4 py-3 text-left">Nome</th>
-                                    <th className="px-4 py-3 text-left">Descrição</th>
+                                    <th className="px-4 py-3 text-left">Cliente</th>
                                     <th className="px-4 py-3 text-left">Cobertura</th>
+                                    <th className="px-4 py-3 text-left">Descrição</th>
                                     <th className="px-4 py-3 text-left">Valor</th>
                                     <th className="px-4 py-3 text-left">Ano do Dispositivo</th>
                                     <th className="px-4 py-3 text-left">Data de Contratação</th>
                                     <th className="px-4 py-3 text-center">Categoria</th>
+                                    <th className="px-4 py-3 text-center">Alterações</th>
                                 </tr>
                             </thead>
 
@@ -104,32 +106,37 @@ function ListaSeguros() {
                                     >
                                         <td className="px-4 py-3">{seguro.id}</td>
                                         <td className="px-4 py-3">{seguro.nomeSeguro}</td>
-                                        <td className="px-4 py-3">{seguro.descricao}</td>
                                         <td className="px-4 py-3">{seguro.cobertura}</td>
+                                        <td className="px-4 py-3">{seguro.descricao}</td>
                                         <td className="px-4 py-3">R$ {seguro.valorSeguro}</td>
                                         <td className="px-4 py-3">{seguro.anoDispositivo}</td>
                                         <td className="px-4 py-3">{seguro.dataContratacao}</td>
-                                        <td className="px-4 py-3">{seguro.Categoria}</td>
+                                        <td className="px-4 py-3">{seguro.categoria?.nomeCategoria}</td>
           
-                                        <td className="px-4 py-3 flex gap-2 justify-center">
-                                        <button 
+                                        <td className="px-4 py-3 flex gap-3 justify-center">
+
+                                        <Link to={`/editarseguro/${seguro.id}`} >
+                                        <button  
                                         className="bg-indigo-500 hover:bg-indigo-600 px-3 py-1 rounded-lg"
                                         >
-                                        Editar
+                                        <PencilIcon size={18} className="text-white" />
                                         </button>
+                                        </Link>
 
+                                        <Link to={`/deletarseguro/${seguro.id}`} >
                                         <button 
                                         className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg"
                                         >
-                                        Excluir
+                                       <TrashIcon size={18} className="text-white" />
                                         </button>
+                                        </Link>
                                         </td>
                                     </tr>
                                 ))}
 
                             </tbody>
                         </table>
-                    </div>
+                </div>
                 </div>
             </div>
             </div>
