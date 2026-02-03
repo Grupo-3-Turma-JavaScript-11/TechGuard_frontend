@@ -22,56 +22,56 @@ function Navbar() {
   return (
     <nav className="bg-slate-950/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b-4 border-emerald-500">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
+
         {/* LOGO */}
         <Link to="/" className="flex items-center gap-3 text-2xl font-black text-emerald-600 tracking-tighter">
-        <img 
-            src={LogoIcon} 
-            alt="TechGuard Logo" 
-            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]" 
-        />
-        <div>
+          <img
+            src={LogoIcon}
+            alt="TechGuard Logo"
+            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]"
+          />
+          <div>
             TECH<span className="text-white font-bold">GUARD</span>
-        </div>
+          </div>
         </Link>
 
         {/* LINKS DE NAVEGAÇÃO */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-bold text-white/80 uppercase tracking-wide">
-          
+
           {/* Lógica do Corretor (Dropdowns) */}
           {usuario.tipo === 'corretor' ? (
             <>
               {/* DROPDOWN SEGUROS */}
-          <div className="relative group">
-            <button className="flex items-center hover:text-emerald-500 transition-colors uppercase py-2">
-              Seguros
-              <i className="fas fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
-            </button>
-            <div className="absolute left-0 top-full w-56 bg-slate-900 border-t-2 border-emerald-500 shadow-xl rounded-b-xl hidden group-hover:block">
-              <Link to="/seguros" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors normal-case font-medium">
-                <i className="fas fa-list mr-2 text-emerald-500"></i> Meus Seguros
-              </Link>
-              <Link to="/cadastrarseguro" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors last:rounded-b-xl normal-case font-medium">
-                <i className="fas fa-plus-circle mr-2 text-emerald-500"></i> Cadastrar Seguro
-              </Link>
-            </div>
-          </div>
+              <div className="relative group">
+                <button className="flex items-center hover:text-emerald-500 transition-colors uppercase py-2">
+                  Seguros
+                  <i className="fas fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
+                </button>
+                <div className="absolute left-0 top-full w-56 bg-slate-900 border-t-2 border-emerald-500 shadow-xl rounded-b-xl hidden group-hover:block">
+                  <Link to="/seguros" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors normal-case font-medium">
+                    <i className="fas fa-list mr-2 text-emerald-500"></i> Meus Seguros
+                  </Link>
+                  <Link to="/cadastrarseguro" className="block px-4 py-3 text-white hover:bg-emerald-500 transition-colors last:rounded-b-xl normal-case font-medium">
+                    <i className="fas fa-plus-circle mr-2 text-emerald-500"></i> Cadastrar Seguro
+                  </Link>
+                </div>
+              </div>
 
-          {/* MENU CATEGORIAS */}
-          <div className="relative group">
-            <button className="flex items-center hover:text-emerald-500 transition-colors uppercase py-2">
-              Categorias
-              <i className="fas fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
-            </button>
-            <div className="absolute left-0 top-full w-64 bg-slate-900 border-t-2 border-[#D4AF37] shadow-xl rounded-b-xl hidden group-hover:block">
-              <Link to="/categorias" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors normal-case font-medium">
-                <i className="fas fa-tags mr-2 text-[#D4AF37]"></i> Categorias de Seguro
-              </Link>
-              <Link to="/cadastrarcategoria" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors last:rounded-b-xl normal-case font-medium">
-                <i className="fas fa-folder-plus mr-2 text-[#D4AF37]"></i> Cadastrar Categoria
-              </Link>
-            </div>
-          </div>
+              {/* DROPDOWN CATEGORIAS */}
+              <div className="relative group">
+                <button className="flex items-center hover:text-emerald-500 transition-colors uppercase py-2">
+                  Categorias
+                  <i className="fas fa-chevron-down ml-2 text-[10px] group-hover:rotate-180 transition-transform"></i>
+                </button>
+                <div className="absolute left-0 top-full w-64 bg-slate-900 border-t-2 border-[#D4AF37] shadow-xl rounded-b-xl hidden group-hover:block">
+                  <Link to="/categorias" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors normal-case font-medium">
+                    <i className="fas fa-tags mr-2 text-[#D4AF37]"></i> Categorias de Seguro
+                  </Link>
+                  <Link to="/cadastrarcategoria" className="block px-4 py-3 text-white hover:bg-[#D4AF37] hover:text-slate-900 transition-colors last:rounded-b-xl normal-case font-medium">
+                    <i className="fas fa-folder-plus mr-2 text-[#D4AF37]"></i> Cadastrar Categoria
+                  </Link>
+                </div>
+              </div>
             </>
           ) : (
             // Lógica Cliente/Visitante
