@@ -16,6 +16,8 @@ function ListaSeguros() {
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
+    
+
 
     const formatarMoeda = (valor: number) => {
         return new Intl.NumberFormat('pt-BR', {
