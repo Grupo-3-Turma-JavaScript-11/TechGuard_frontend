@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { 
   Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, 
-  DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo, 
+  DeviceTabletCameraIcon, 
   CaretLeft, CaretRight, Plus 
 } from "@phosphor-icons/react";
 
@@ -10,6 +10,7 @@ import { CoberturaCard } from '../../components/cardshome/coberturacard/Cobertur
 import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/EcossistemaCard';
 import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
 import LogoIcon from '../../assets/img/logoicon.png';
+import Carrosel from '../../components/animacao/Carrosel';
 
 // Constantes (Mantidas fora do componente para melhor performance)
 const slides = [
@@ -238,20 +239,14 @@ function Home() {
               />
             ))}
           </div>
-
-          <div className="mt-16 flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <AppleLogo size={40} weight="fill" />
-            <AndroidLogo size={40} weight="fill" />
-            <WindowsLogo size={40} weight="fill" />
-            <span className="font-bold text-2xl italic font-serif underline decoration-[#D4AF37] underline-offset-8">SAMSUNG</span>
-            <span className="font-bold text-2xl italic font-sans">DELL</span>
-          </div>
         </div>
       </section>
-
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
-        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
+        <div className="w-full h-px -m-10 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent">
+        <div className=' text-white -m-40'>
+            <Carrosel />
+          </div></div>
       </div>
 
       {/* PLANOS */}

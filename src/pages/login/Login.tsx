@@ -88,7 +88,7 @@ function Login() {
 
         <button 
           type="submit"
-          className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+          className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-400 to-emerald-700 hover:opacity-90 transition">
           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 
