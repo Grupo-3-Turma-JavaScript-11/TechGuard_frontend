@@ -4,7 +4,7 @@ export default function Carrosel(){
 return(
 <div className="carousel">
   <div className="track">
-  <div className="group">
+  <div className="group-1">
 
     <div className="card">
         <AppleLogoIcon size={40} weight="fill" />
@@ -44,7 +44,7 @@ return(
       </div>
   </div>
 
-  <div className="group">
+  <div className="group-1">
     <div className="card">
         <AppleLogoIcon size={40} weight="fill" />
       </div>

@@ -10,7 +10,7 @@
   animation: scroll 20s linear infinite;
 }
 
-.group {
+.group-1 {
   display: flex;
   gap: 1em;
 }
