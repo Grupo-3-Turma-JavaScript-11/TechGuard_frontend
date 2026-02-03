@@ -142,7 +142,7 @@ function FormCategoria() {
 
         <button 
           type="submit"
-          className="w-full mt-5 py-3 rounded-xl font-semibold text-white 'bg-gradient-to-r' from-emerald-400 to-emerald-900 hover:opacity-90 transition 'hover:bg-gradient-to-br' hover:from-[#D1D5DB] hover:to-[#6B7280]">
+          className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-400 to-emerald-900 hover:opacity-90 transition hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280]">
           { isLoading ? 
                             <ClipLoader 
                                 color="#ffffff" 

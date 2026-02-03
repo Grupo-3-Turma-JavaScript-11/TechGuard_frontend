@@ -27,7 +27,7 @@ function FormSeguro() {
 
     async function buscarSeguroPorId(id: string) {
         try {
-            await buscar(`/seguros/${id}`, setSeguro, {
+            await buscar('/seguros/', setSeguro, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -39,7 +39,7 @@ function FormSeguro() {
 
     async function buscarCategoriaPorId(id: string) {
         try {
-            await buscar(`/categorias/${id}`, setCategoria, {
+            await buscar(`/categorias/`, setCategoria, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -158,7 +158,7 @@ function FormSeguro() {
                     <ShieldIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="text"
-                        id="nomeSeguro"
+                        // id="nomeSeguro"
                         placeholder="Nome do Cliente"
                         name="nomeSeguro"
                         required
@@ -260,8 +260,8 @@ function FormSeguro() {
                 <button 
                     type='submit' 
                     className="w-full py-3 rounded-xl font-semibold text-white transition
-                    'bg-gradient-to-r' from-emerald-400 to-emerald-900
-                    'hover:bg-gradient-to-br' hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
+                    bg-gradient-to-r from-emerald-400 to-emerald-900
+                    hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
                     disabled={carregandoCategoria}
                 >
                     { isLoading ? 
