@@ -22,7 +22,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Gabriel Andrade
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Tester</p>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Matheus Umbuzeiro
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Product Owner</p>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Jessica Berteloni
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Developer</p>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Manuella Oliveira
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Developer</p>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Yaleh Nobrega
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Developer</p>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ function Team  ()  {
               <p className="mb-1 text-lg font-bold text-gray-100">
                 Carolina Figueiredo
               </p>
-              <p className="mb-4 text-xs text-gray-100">Product Manager</p>
+              <p className="mb-4 text-xs text-gray-100">Developer</p>
             </div>
           </div>
         </div>
