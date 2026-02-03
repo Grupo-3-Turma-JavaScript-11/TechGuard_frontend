@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import type Categoria from "../../../models/categoria"
 import { ClipLoader } from "react-spinners"
 import { buscar, deletar } from "../../../service/Service"
@@ -92,7 +92,7 @@ function DeletarCategoria() {
              <div className="group flex-none max-w-3xl mx-auto backdrop-blur-md flex rounded-2xl overflow-hidden justify-between items-center bg-gray-700
                 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border shadow-emerald-500/20 border-white pr-4">
 
-  <div className="relative bg-gradient-to-br from-[#D1D5DB] to-[#6B7280] w-28 flex justify-center items-center h-full">
+  <div className="relative 'bg-gradient-to-br' from-[#D1D5DB] to-[#6B7280] w-28 flex justify-center items-center h-full">
     
     
     <div className="absolute w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>

@@ -101,7 +101,7 @@ function FormSeguro() {
 
         if (id !== undefined) {
             try {
-                await atualizar(`/seguros/${seguro.id}`, seguro, setSeguro, {
+                await atualizar(`/seguros/`, seguro, setSeguro, {
                 headers: { Authorization: token }
             });
 
@@ -155,9 +155,10 @@ function FormSeguro() {
 
             <form onSubmit={gerarNovoSeguro}>
                 <div className="relative mb-4">
-                    <ShieldIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <ShieldIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="text"
+                        id="nomeSeguro"
                         placeholder="Nome do Cliente"
                         name="nomeSeguro"
                         required
@@ -184,7 +185,7 @@ function FormSeguro() {
                             />
                         </div>
                 <div className="relative mb-4">
-                    <ShieldCheckIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <ShieldCheckIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="text"
                         placeholder="Cobertura"
@@ -198,7 +199,7 @@ function FormSeguro() {
                     />
                 </div>
                 <div className="relative mb-4">
-                    <CurrencyCircleDollarIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <CurrencyCircleDollarIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="number"
                         placeholder="Valor do Seguro (R$)"
@@ -212,7 +213,7 @@ function FormSeguro() {
                     />
                 </div>
                 <div className="relative mb-4">
-                    <CalendarIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <CalendarIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="number"
                         placeholder="Ano do Dispositivo"
@@ -226,7 +227,7 @@ function FormSeguro() {
                     />
                 </div>
                 <div className="relative mb-4">
-                    <CalendarPlusIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <CalendarPlusIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <input
                         type="date"
                         placeholder="Data da Contratação"
@@ -240,7 +241,7 @@ function FormSeguro() {
                     />
                 </div>
                 <div className="relative mb-4">
-                    <ListIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <ListIcon size={28} color="#2d9a62" className="absolute left-2 top-1/2 -translate-y-1/2" />
                     <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40  resize-none placeholder:text-black
                         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
                         transition-all duration-300' 
@@ -259,8 +260,8 @@ function FormSeguro() {
                 <button 
                     type='submit' 
                     className="w-full py-3 rounded-xl font-semibold text-white transition
-                    bg-gradient-to-r from-emerald-400 to-emerald-900
-                    hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
+                    'bg-gradient-to-r' from-emerald-400 to-emerald-900
+                    'hover:bg-gradient-to-br' hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
                     disabled={carregandoCategoria}
                 >
                     { isLoading ? 
