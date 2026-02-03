@@ -42,18 +42,16 @@ function ListaCategorias() {
 
     return (
         <>
-
-
+       
             {isLoading && (
-                <div className="flex justify-center w-full my-8">
+                <div className="flex justify-center w-full  bg-gray-900 pt-8">
                     <SyncLoader
-                        color="#09265e"
+                        color="#a0a0a0"
                         size={32}
                     />
                 </div>
             )}
-            <div className="w-full h-screen flex flex-col p-20 items-center ">
-           <button className=" 'bg-gradient-to-r' from-blue-800 to-blue-400 mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarcategoria')}>Cadastrar nova categoria</button>
+            <div className="w-full bg-gray-900 h-screen flex flex-col p-20 items-center ">
 
             <div className="flex justify-center w-full my-4">
                 <div className="container flex flex-col">
