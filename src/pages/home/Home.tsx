@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import {
-  Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop,
-  DeviceTabletCameraIcon, AppleLogo, AndroidLogo, WindowsLogo,
-  CaretLeft, CaretRight, Plus
+import { 
+  Handbag, Hammer, Drop, Lightning, Watch, DeviceMobile, Laptop, 
+  DeviceTabletCameraIcon, 
+  CaretLeft, CaretRight, Plus 
 } from "@phosphor-icons/react";
 
 // Components
@@ -10,6 +10,7 @@ import { CoberturaCard } from '../../components/cardshome/coberturacard/Cobertur
 import { EcossistemaCard } from '../../components/cardshome/ecossistemacard/EcossistemaCard';
 import { ClienteCard } from '../../components/cardshome/clientecard/ClienteCard';
 import LogoIcon from '../../assets/img/logoicon.png';
+import Carrosel from '../../components/animacao/Carrosel';
 import { useNavigate } from 'react-router-dom';
 
 // Constantes (Mantidas fora do componente para melhor performance)
@@ -202,7 +203,7 @@ function Home() {
       < section id="coberturas" className="py-20 bg-gray-800 w-full overflow-hidden text-white" >
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-black text-center mb-16 uppercase tracking-widest text-emerald-500">
-            O que nosso seguro oferece:
+            O que protegemos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-gray-900">
             {coberturas.map((item, index) => (
@@ -241,7 +242,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900 mb-30">
             {ecossistema.map((item, index) => (
               <EcossistemaCard
                 key={index}
@@ -251,21 +252,15 @@ function Home() {
               />
             ))}
           </div>
-
-          <div className="mt-16 flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <AppleLogo size={40} weight="fill" />
-            <AndroidLogo size={40} weight="fill" />
-            <WindowsLogo size={40} weight="fill" />
-            <span className="font-bold text-2xl italic font-serif underline decoration-[#D4AF37] underline-offset-8">SAMSUNG</span>
-            <span className="font-bold text-2xl italic font-sans">DELL</span>
-          </div>
         </div>
-      </section >
-
+      </section>
       {/* DIVISOR */}
-      < div className="bg-gray-800 w-full py-2" >
-        <div className="w-full h-px 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent"></div>
-      </div >
+      <div className="bg-gray-800 w-full py-2">
+        <div className="w-full h-px -m-10 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent">
+        <div className=' text-white -m-55'>
+            <Carrosel />
+          </div></div>
+      </div>
 
       {/* PLANOS */}
       < section id="planos" className="py-20 bg-gray-800" >
