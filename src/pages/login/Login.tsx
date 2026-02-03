@@ -45,14 +45,9 @@ function Login() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
-      style={{
-        backgroundImage:
-          "url('/fundo3.jpg')",
-      }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-900"
+      
     >
-      <div className="absolute inset-0 bg-black/40" />
-
       <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
         <h1 className="text-3xl font-semibold mb-2">Login</h1>
         <p className="text-white/80 mb-6">

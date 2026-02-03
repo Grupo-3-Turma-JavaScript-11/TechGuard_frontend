@@ -68,13 +68,8 @@ export default function Cadastro() {
   }
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
-      style={{
-        backgroundImage:
-          "url('/fundo3.jpg')",
-      }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-900"
     >
-      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
         <h1 className="text-3xl font-semibold mb-2">Cadastro</h1>
@@ -156,7 +151,7 @@ export default function Cadastro() {
           />
         </div>
 
-        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-400 to-emerald-900 hover:opacity-90 transition">
           { isLoading ? 
                   <ClipLoader 
                     color="#ffffff" 
