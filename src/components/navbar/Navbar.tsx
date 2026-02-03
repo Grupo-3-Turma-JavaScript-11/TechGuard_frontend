@@ -69,9 +69,11 @@ function Navbar() {
           <Link to="/corretor" className="hidden lg:block text-xs font-black text-emerald-500 uppercase tracking-widest hover:text-[#D4AF37] transition-colors border-b border-transparent hover:border-[#D4AF37]">
             <i className="fas fa-briefcase mr-1"></i> Sou Corretor
           </Link>
-          <button className="bg-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:bg-[#D4AF37] hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300">
-            Área do Cliente
-          </button>
+          <Link to='/perfil' className='hover:underline'>
+            <button className="bg-emerald-500 text-white px-6 py-2 rounded-full font-bold hover:bg-[#D4AF37] hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300">
+              Área do Cliente
+            </button>
+          </Link>
           <button className="md:hidden text-white text-2xl">
             <i className="fas fa-bars"></i>
           </button>
