@@ -57,12 +57,16 @@ function ListaSeguros() {
                 </div>
             )}
 
-             <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-500">
-                
+            <div
+                className="min-h-screen flex items-center justify-center bg-cover bg-center relative invert"
+                style={{
+                    backgroundImage:"url('/fundo3.jpg')",
+                    }}
+            >
             <div className="absolute inset-0 bg-black/40" />
-            <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
+            <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white"></div>
 
-            <button className="'bg-gradient-to-r' from-blue-800 to-blue-400 mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarproduto')}>Cadastrar novo Produto</button>
+            <button className=" mb-30 rounded-2xl text-3xl text-white font-semibold h-15 w-120 self-center hover:bg-blue-900" onClick={() => navigate('/cadastrarseguro')}>Cadastrar novo Seguro</button>
 
             <div className="flex justify-center w-full my-4">
                 <div className="container flex flex-col">
@@ -84,7 +88,7 @@ function ListaSeguros() {
                 </div>
             </div>
             </div>
-            </div>
+            
         </>
     )
 }

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type Categoria from '../../../models/categoria';
+import { DeviceMobileIcon } from '@phosphor-icons/react';
 
 interface CardCategoriaProps{
     categoria: Categoria
@@ -11,7 +12,9 @@ function CardCategoria({ categoria }: CardCategoriaProps) {
             <header className='py-2 px-6 bg-blue-950 text-white text-center font-bold text-2xl'>
                 Categoria
             </header>
-            <p className='p-8 text-2xl h-full text-gray-700 font-medium'>{categoria.descricao}</p>
+            <DeviceMobileIcon className="mx-auto my-4 text-blue-950" size={200} />
+            <p className='p-2 text-2xl h-full text-gray-700 font-medium'>{categoria.nomeCategoria}</p>
+            {/* <p className='p-8 text-2xl h-full text-gray-700 font-medium'>{categoria.descricao}</p> */}
             
             <div className="flex gap-3 p-2 mb-3">
                 <Link to={`/editarcategoria/${categoria.id}`} 
