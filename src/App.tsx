@@ -58,12 +58,7 @@ function App() {
 							<Route path="/editarperfil" element={<EditarPerfil />} />
 							<Route path="/deletarperfil" element={<DeletarPerfil />} />
 
-							
-						</Routes>
-			
-							{/* Gestão global */}
-							{/* <Route path="/admin/seguros" element={<ListaSegurosAdmin />} /> */}
-						</Route> {/* <--- E ESQUECEU ESSE AQUI TAMBÉM! */}
+						</Route>	
 					</Routes>
 					<Footer />
 				</BrowserRouter>
