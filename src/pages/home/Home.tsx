@@ -229,7 +229,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-900 mb-30">
             {ecossistema.map((item, index) => (
               <EcossistemaCard 
                 key={index}
@@ -244,7 +244,7 @@ function Home() {
       {/* DIVISOR */}
       <div className="bg-gray-800 w-full py-2">
         <div className="w-full h-px -m-10 'bg-gradient-to-r' from-transparent via-emerald-500/50 to-transparent">
-        <div className=' text-white -m-40'>
+        <div className=' text-white -m-55'>
             <Carrosel />
           </div></div>
       </div>
