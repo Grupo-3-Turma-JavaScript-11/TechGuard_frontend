@@ -25,7 +25,7 @@ function DeletarSeguro() {
             })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                // handleLogout()
+                handleLogout()
             }
         }
     }

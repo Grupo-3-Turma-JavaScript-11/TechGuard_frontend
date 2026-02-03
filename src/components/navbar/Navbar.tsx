@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LogoIcon from '../../assets/img/logoicon.png';
 
 function Navbar() {
   return (
@@ -6,8 +7,15 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         
         {/* LOGO */}
-        <Link to="/" className="text-2xl font-black text-emerald-600 tracking-tighter">
-          TECH<span className="text-white font-bold">GUARD</span>
+        <Link to="/" className="flex items-center gap-3 text-2xl font-black text-emerald-600 tracking-tighter">
+        <img 
+            src={LogoIcon} 
+            alt="TechGuard Logo" 
+            className="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]" 
+        />
+        <div>
+            TECH<span className="text-white font-bold">GUARD</span>
+        </div>
         </Link>
 
         {/* LINKS DE NAVEGAÇÃO */}

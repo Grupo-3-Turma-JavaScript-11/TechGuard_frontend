@@ -53,7 +53,7 @@ export default function Cadastro() {
       setIsLoading(true)
 
       try{
-        await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
+        await cadastrarUsuario(`/usuarios`, usuario, setUsuario)
         ToastAlert('Usuário cadastrado com sucesso!', 'sucesso')
       }catch(error){
         ToastAlert('Erro ao cadastrar o usuário!', 'erro')
@@ -156,8 +156,14 @@ export default function Cadastro() {
           />
         </div>
 
-        <button className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
-          Cadastrar
+        <button type="submit" className="w-full mt-5 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-lime-500 to-emerald-700 hover:opacity-90 transition">
+          { isLoading ? 
+                  <ClipLoader 
+                    color="#ffffff" 
+                    size={24}
+                  /> : 
+                  <span>Cadastrar</span>
+                }
         </button>
         </form>
       </div>

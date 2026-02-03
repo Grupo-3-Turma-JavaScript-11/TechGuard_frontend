@@ -5,6 +5,8 @@ import { atualizar, buscar, cadastrar } from "../../../service/Service";
 import type Categoria from "../../../models/categoria";
 import type Seguro from "../../../models/seguro";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { ToastAlert } from "../../../utils/ToastAlert";
+import { CalendarIcon, CalendarPlusIcon, CurrencyCircleDollarIcon, ListIcon, NotepadIcon, ShieldCheckIcon, ShieldIcon } from "@phosphor-icons/react";
 
 function FormSeguro() {
 
@@ -14,7 +16,7 @@ function FormSeguro() {
 
     const [categorias, setCategorias] = useState<Categoria[]>([])
 
-    const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
+    const [categoria, setCategoria] = useState<Categoria>({id: 0, nomeCategoria: "", descricao: "", })
     
     const [seguro, setSeguro] = useState<Seguro>({ } as Seguro)
 
@@ -30,7 +32,7 @@ function FormSeguro() {
             })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                // handleLogout()
+                handleLogout()
             }
         }
     }
@@ -61,7 +63,7 @@ function FormSeguro() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            ToastAlert('Você precisa estar logado', 'sucesso');
             navigate('/');
         }
     }, [token])
@@ -81,7 +83,7 @@ function FormSeguro() {
         })
     }, [categoria])
 
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    function atualizarEstado(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         setSeguro({
             ...seguro,
             [e.target.name]: e.target.value,
@@ -103,13 +105,13 @@ function FormSeguro() {
                 headers: { Authorization: token }
             });
 
-                alert('Seguro atualizado com sucesso')
+                ToastAlert('Seguro atualizado com sucesso', 'sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    // handleLogout()
+                    handleLogout()
                 } else {
-                    alert('Erro ao atualizar o Seguro')
+                    ToastAlert('Erro ao atualizar o Seguro', 'erro')
                 }
             }
 
@@ -119,13 +121,13 @@ function FormSeguro() {
                 headers: { Authorization: token }
             });
 
-                alert('Seguro cadastrado com sucesso');
+                ToastAlert('Seguro cadastrado com sucesso', 'sucesso');
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    // handleLogout()
+                    handleLogout()
                 } else {
-                    alert('Erro ao cadastrar o Seguro');
+                    ToastAlert('Erro ao cadastrar o Seguro', 'erro');
                 }
             }
         }
@@ -138,88 +140,110 @@ function FormSeguro() {
 
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-4xl text-center my-8">
+
+            <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative bg-gray-900"
+    >
+         <div className="absolute w-72 h-72 bg-emerald-500/20 blur-3xl rounded-full -top-10 -left-10 animate-pulse"></div>
+  <div className="absolute w-72 h-72 bg-emerald-400/10 blur-3xl rounded-full bottom-0 right-0 animate-pulse"></div>
+    
+            <div className="relative w-[95%] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white">
+            <h1 className="text-3xl font-semibold mb-2">
                  {id !== undefined ? 'Editar Seguro' : 'Cadastrar Seguro'}
             </h1>
+            <p className="text-white/80 mb-6">Insira as informações</p>
 
-            <form className="flex flex-col w-1/2 gap-4"
-                onSubmit={gerarNovoSeguro}>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Nome do Seguro</label>
+            <form onSubmit={gerarNovoSeguro}>
+                <div className="relative mb-4">
+                    <ShieldIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="text"
                         placeholder="Nome do Seguro"
                         name="nomeSeguro"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.nomeSeguro}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Descrição</label>
-                    <input
-                        type="text"
-                        placeholder="Descricao"
-                        name="descricao"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                        value={seguro.descricao}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Cobertura</label>
+                            <div className="relative mb-4">
+                        <NotepadIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                        
+                        <textarea
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Descreva o que essa categoria cobre..."
+                            value={seguro.descricao}
+                            onChange={atualizarEstado}
+                            rows={4}
+                            required
+                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/50 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                                        transition-all duration-300"
+                            />
+                        </div>
+                <div className="relative mb-4">
+                    <ShieldCheckIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="text"
                         placeholder="Cobertura"
                         name="cobertura"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.cobertura}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Valor do Seguro</label>
+                <div className="relative mb-4">
+                    <CurrencyCircleDollarIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="number"
-                        placeholder="Valor"
+                        placeholder="Valor do Seguro (R$)"
                         name="valor"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.valor}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Ano do Dispositivo</label>
+                <div className="relative mb-4">
+                    <CalendarIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="text"
                         placeholder="Ano do Dispositivo"
                         name="anoDispositivo"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.anoDispositivo}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}                       
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Data da Contratação</label>
+                <div className="relative mb-4">
+                    <CalendarPlusIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
                     <input
                         type="date"
                         placeholder="Data da Contratação"
                         name="dataContratacao"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300"
                         value={seguro.dataContratacao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
-                <div className="flex flex-col gap-2">
-                    <p>Categoria do Produto</p>
-                    <select name="categoria" id="categoria" className='border p-2 border-slate-800 rounded' 
+                <div className="relative mb-4">
+                    <ListIcon size={28} color="#2d9a62" className="absolute top-3 left-2 " />
+                    <select name="categoria" id="categoria" className='w-full focus:border-none pl-12 pr-4 py-3 rounded-xl bg-transparent border border-white/40 placeholder-white/80 resize-none
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                        transition-all duration-300' 
                     onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}
                     >
                     <option value="" selected disabled>Selecione uma Categoria</option>
@@ -234,8 +258,10 @@ function FormSeguro() {
                 </div>
                 <button 
                     type='submit' 
-                    className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
-                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center'
+                    className="w-full py-3 rounded-xl font-semibold text-white transition
+                    bg-gradient-to-r from-emerald-400 to-emerald-900
+                    hover:bg-gradient-to-br hover:from-[#D1D5DB] hover:to-[#6B7280] mt-5"
+                    //hover:bg-gradient-to-br from-[#D1D5DB] to-[#6B7280]
                                disabled={carregandoCategoria}
                 >
                     { isLoading ? 
@@ -249,7 +275,7 @@ function FormSeguro() {
                 </button>
             </form>
             </div>
-    
+        </div>
     );
 }
 
